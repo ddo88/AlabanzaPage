@@ -44,7 +44,8 @@ zg.viewModel = function () {
         //canciones = ko.observableArray(zg.demoData()),
         canciones = ko.observableArray([]),
         add = function (elem) {
-            cancionesSeleccionadas.push(elem);
+            if(cancionesSeleccionadas.indexOf(elem)<0)
+                cancionesSeleccionadas.push(elem);
         },
         up = function (elem) {
           cancionesSeleccionadas.move(cancionesSeleccionadas.indexOf(elem), -1);  

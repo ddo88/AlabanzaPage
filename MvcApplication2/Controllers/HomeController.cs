@@ -11,7 +11,7 @@ namespace MvcApplication2.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            ViewBag.Message = "Listado Cnaciones!";
 
             return View(new ViewModel());
         }
