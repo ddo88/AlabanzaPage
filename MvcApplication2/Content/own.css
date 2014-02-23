@@ -1,0 +1,36 @@
+﻿input.up {
+    background-image: url('icons/arrow-up.png');
+}
+
+input.down {
+    background-image: url('icons/arrow-down.png');
+}
+
+input.remove {
+ background-image: url('icons/delete.png');
+}
+
+input.add {
+    background-image: url('icons/add.png');
+}
+
+input {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position:center;
+    padding-left: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+#canciones_list {
+    float: left;	
+}
+#canciones_select
+{
+   float:right;	
+}
+
+table#select {
+        padding-left: 20px;
+}

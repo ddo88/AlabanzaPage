@@ -1,0 +1,70 @@
+﻿@Model MvcApplication2.Models.ViewModel;
+@{
+    ViewBag.Title = "Home Page";
+}
+<script src="../../Scripts/JScript1.js" type="text/javascript"></script>
+<script src="../../Scripts/moment.js" type="text/javascript"></script>
+<link href="../../Content/own.css" rel="stylesheet" type="text/css" />
+<script src="../../Scripts/autoheigth.js" type="text/javascript"></script>
+<h2>@ViewBag.Message</h2>
+<p>
+    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+</p>
+<div id="contenedor">
+<div id="canciones_list">
+    <table id="list">
+        <thead>
+            <tr>
+                <td>Cancion</td>
+                <td>Tipo</td>
+                <td>Ultima Vez</td>
+                <td>Añadir</td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ko foreach: canciones -->
+            <tr>
+                <td><span data-bind="text: nombre"></span></td>
+                <td><span data-bind="text: tipo"></span></td>
+        
+                <td><span data-bind="date: ultimaVez"></span></td>
+                <td><input data-bind="click: $parent.add" class="add" type="button" /></td>
+            </tr>
+            <!-- /ko-->
+        </tbody>
+    </table>
+</div>
+<div id="canciones_select">
+    <!-- ko if: cancionesSeleccionadas().length>0 -->
+    <table id="select">
+        <thead>
+            <tr>
+                <td>Nombre</td>
+                <td>Tipo</td>
+                <td>Subir</td>
+                <td>Bajar</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ko foreach: cancionesSeleccionadas-->
+            <tr>
+                <td><span data-bind="text: nombre"></span></td>
+                <td><span data-bind="text: tipo"></span></td>    
+                <td><input type="button" data-bind="click: $parent.up" class="up" /></td>
+                <td><input type="button" data-bind="click: $parent.down" class="down" /></td>
+                <td><input type="button" data-bind="click: $parent.remove" class="remove" /></td>
+            </tr>
+            <!-- /ko-->
+        </tbody>
+    </table>
+    <!-- /ko -->
+</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var model = new zg.viewModel();
+        model.load(model);
+        ko.applyBindings(model);
+    });
+</script>
