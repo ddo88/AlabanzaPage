@@ -3,7 +3,7 @@
 }
 <script src="../../Scripts/JScript1.js" type="text/javascript">  </script>
 <script src="../../Scripts/moment.js" type="text/javascript">    </script>
-<script src="../../Scripts/autoheigth.js" type="text/javascript"></script>
+<script src="../../Scripts/helpers.js" type="text/javascript"></script>
 <link href="../../Content/own.css" rel="stylesheet" type="text/css" />
 <h2>@ViewBag.Message</h2>
 <p>
@@ -14,16 +14,16 @@
     <table id="list">
         <thead>
             <tr>
-                <td>Cancion</td>
+                <td data-bind="click: sortCancion">Cancion</td>
                 <td>Tipo</td>
-                <td>Ultima Vez</td>
+                <td data-bind="click: sortFecha">Ultima Vez</td>
                 <td>Añadir</td>
             </tr>
         </thead>
         <tbody>
             <!-- ko foreach: canciones -->
             <tr>
-                <td><span data-bind="text: nombre"></span></td>
+                <td ><span data-bind="text: nombre"></span></td>
                 <td><span data-bind="text: tipo"></span></td>
         
                 <td><span data-bind="date: ultimaVez"></span></td>
@@ -47,9 +47,9 @@
         </thead>
         <tbody>
             <!-- ko foreach: cancionesSeleccionadas-->
-            <tr>
+            <tr data-bind="css: cls">
                 <td><span data-bind="text: nombre"></span></td>
-                <td><span data-bind="text: tipo"></span></td>    
+                <td><span data-bind="text: tipo"></span></td>
                 <td><input type="button" data-bind="click: $parent.up" class="up" /></td>
                 <td><input type="button" data-bind="click: $parent.down" class="down" /></td>
                 <td><input type="button" data-bind="click: $parent.remove" class="remove" /></td>

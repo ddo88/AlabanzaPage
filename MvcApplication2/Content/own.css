@@ -28,3 +28,14 @@ input {
 table#select {
         padding-left: 20px;
 }
+
+.adoracion {
+
+    background-color: cornflowerblue;
+    color: black;
+    
+}
+.alabanza {
+    background-color: chartreuse;
+    color: black;
+}

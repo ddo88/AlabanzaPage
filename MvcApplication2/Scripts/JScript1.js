@@ -6,6 +6,12 @@ zg.cancion = function () {
     this.nombre = ko.observable();
     this.tipo = ko.observable();
     this.ultimaVez = ko.observable();
+    
+    this.cls = ko.computed(function() {
+        if (this.tipo() !== undefined)
+            return this.tipo().toLowerCase();
+        return this.tipo();
+    },this);
 };
 //como voy a cargar los datos????
 zg.demoData = function () {
@@ -20,20 +26,7 @@ zg.demoData = function () {
     return list;
 };
 
-var AjaxResult= function(result){
-    var a= result.Canciones;
-    var list=([]);
-    
-    for(var i =0;i<result.Canciones.length;i++)
-    {
-    var n= new zg.cancion();
-    n.nombre(a[i].Nombre);
-    n.tipo(a[i].Tipo);
-    n.ultimaVez(a[i].UltimaVez);
-    list.push(n);
-    }
-  return list; 
-};
+
 //zg.LoadData=function () {
     // on this click event, we popular the observable array
   
@@ -43,31 +36,51 @@ zg.viewModel = function () {
     var cancionesSeleccionadas = ko.observableArray([]),
         //canciones = ko.observableArray(zg.demoData()),
         canciones = ko.observableArray([]),
-        add = function (elem) {
-            if(cancionesSeleccionadas.indexOf(elem)<0)
+        orden     = ko.observable(true);
+        ordenDate = ko.observable(true);
+        add       = function(elem) {
+            if (cancionesSeleccionadas.indexOf(elem) < 0)
                 cancionesSeleccionadas.push(elem);
         },
-        up = function (elem) {
-          cancionesSeleccionadas.move(cancionesSeleccionadas.indexOf(elem), -1);  
+        up        = function(elem) {
+            cancionesSeleccionadas.move(cancionesSeleccionadas.indexOf(elem), -1);
         },
-        down = function (elem) {
-           cancionesSeleccionadas.move(cancionesSeleccionadas.indexOf(elem), 1);
+        down      = function(elem) {
+            cancionesSeleccionadas.move(cancionesSeleccionadas.indexOf(elem), 1);
         },
-        remove = function (elem) {
+        remove    = function(elem) {
             cancionesSeleccionadas.remove(elem);
         },
-        load=function(){
-          $.ajax({
+        load      = function() {
+            $.ajax({
                 url: '/Home/Model/',
                 type: "GET",
                 dataType: 'json',
-                success: function (data) {
+                success: function(data) {
                     canciones.removeAll();
                     canciones(AjaxResult(data));
                     canciones.valueHasMutated();
                     Size();
                 }
             });
+        },
+        sortCancion = function() {
+            if (orden()) {
+                orden(false);
+                canciones(canciones().sort(CompareNameDesc));
+            } else {
+                canciones(canciones().sort(CompareNameAsc));
+                orden(true);
+            }
+        },
+        sortFecha = function() {
+            if (ordenDate()) {
+                ordenDate(false);
+                canciones(canciones().sort(CompareDateDesc));
+            } else {
+                canciones(canciones().sort(CompareDateAsc));
+                ordenDate(true);
+            }
         };
     return {
         canciones: canciones,
@@ -76,7 +89,9 @@ zg.viewModel = function () {
         remove: remove,
         up:up,
         down:down,
-        load:load
+        load:load,
+        sortCancion:sortCancion,
+        sortFecha:sortFecha
     };
 };
 
