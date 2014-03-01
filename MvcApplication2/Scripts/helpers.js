@@ -13,6 +13,7 @@ var AjaxResult = function (result) {
         n.nombre(a[i].Nombre);
         n.tipo(a[i].Tipo);
         n.ultimaVez(a[i].UltimaVez);
+        n.id(a[i].Id);
         list.push(n);
     }
     return list;

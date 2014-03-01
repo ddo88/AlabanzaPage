@@ -3,6 +3,7 @@
 /// <reference path="jquery-2.1.0.js" />
 var zg = zg || {};
 zg.cancion = function () {
+    this.id = ko.observable();
     this.nombre = ko.observable();
     this.tipo = ko.observable();
     this.ultimaVez = ko.observable();
@@ -81,6 +82,15 @@ zg.viewModel = function () {
                 canciones(canciones().sort(CompareDateAsc));
                 ordenDate(true);
             }
+        },
+        saveCanciones= function() {
+            $.ajax({
+                url: '/Home/SaveModel/',
+                type: "POST",
+                data: ko.toJSON(cancionesSeleccionadas)
+            }).success(function(res) {
+                var a = 0;
+            });
         };
     return {
         canciones: canciones,
@@ -91,7 +101,8 @@ zg.viewModel = function () {
         down:down,
         load:load,
         sortCancion:sortCancion,
-        sortFecha:sortFecha
+        sortFecha:sortFecha,
+        saveCanciones:saveCanciones
     };
 };
 

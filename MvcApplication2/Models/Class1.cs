@@ -1,50 +1,84 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
+using MvcApplication2.Helpers;
 
 namespace MvcApplication2.Models
 {
-    public class Cancion
+    public class Db
     {
-        public Object Id     { get; set; }
-        public string Nombre { get; set; }
-        public string Tipo   { get; set; }
-        public DateTime UltimaVez { get; set; }
-    }
+        private MongoDatabase db;
 
-    public class ViewModel
-    {
-
-        public List<Cancion> Canciones { get; set; }
-
-
-        public ViewModel()
+        public Db()
         {
-
+            string      s      = "mongodb://127.0.0.1:27017";
+            MongoClient mc     = new MongoClient(s);
+            MongoServer server = mc.GetServer();
+            db                 = server.GetDatabase("alabanza");
         }
 
-        public ViewModel(bool sw)
+        public bool SaveListado(List<Cancion> canciones, string usuario)
         {
-            try{
-            Canciones= new List<Cancion>();
-            //string s = @"mongodb://pagiel:a1b2c3d4@ds030817.mongolab.com:30817/alabanza";
-            string s = "mongodb://127.0.0.1:27017";
-            MongoClient mc = new MongoClient(s);
-            MongoServer server = mc.GetServer();
-            MongoDatabase db = server.GetDatabase("alabanza");
-
-            MongoCollection<Cancion> _evento = db.GetCollection<Cancion>("Canciones");
-
-            foreach (var a in _evento.FindAll())
+            try
             {
-            Canciones.Add(a);    
+                //Guardar el listado
+                //SaveLista(new Lista
+                //    {
+                //        Canciones = canciones,
+                //        Fecha     = DateTime.Now.Next(DayOfWeek.Sunday),
+                //        IdUsuario = usuario
+                //    });
+                //Actualizar las canciones
+                ActualizarFechaCanciones(canciones);
+                //enviar Correo a todos los usuarios
+
+                return true;
+
             }
+            catch (Exception ex)
+            {
+                return false;
             }
-            catch (Exception ex) { }
             
+        }
+
+        private bool SendEmail(Lista l)
+        {
+
+            return true;
+        }
+
+        private bool SaveLista(Lista l)
+        {
+            if (!db.CollectionExists("Lista"))
+                db.CreateCollection("Lista");
+            MongoCollection<Lista> lista = db.GetCollection<Lista>("Lista");
+            lista.Save(l);
+            return false;
+        }
+
+        private bool ActualizarFechaCanciones(List<Cancion> canciones)
+        {
+            try
+            {
+                foreach (var c in canciones)
+                {
+                    var col = db.GetCollection<Cancion>("Canciones");
+                    col.Update(Query<Cancion>.EQ(x => x.Nombre, c.Nombre), Update<Cancion>.Set(x => x.UltimaVez, DateTime.Now));
+
+                    //MongoUpdateOptions muo= new MongoUpdateOptions();
+                    //muo.Flags= UpdateFlags.None;
+                    //var update = Update<Cancion>.Set(x => x.UltimaVez, DateTime.Now);
+                    //db.GetCollection<Cancion>("Canciones").Update(Query<Cancion>.EQ(x => x.Id, c.Id), update, muo);
+                    //_caseCollection.Update(Query<Case>.EQ(x => x.Id, caseItem.Id), Update.Replace(existingDocument.Merge(caseItem.ToBsonDocument(), true)));
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
 
