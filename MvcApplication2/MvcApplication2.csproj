@@ -67,10 +67,15 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="ZeitGeist">
+      <HintPath>F:\Users\D\Documentos\Empresa\Proyectos\Ingenieria Apropiada\TopSecret\WpfProtocolo\ZeitGeist\bin\Debug\ZeitGeist.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailCls.cs" />
+    <Compile Include="Controllers\ValidateSecurity.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -79,6 +84,8 @@
     <Compile Include="Models\Cancion.cs" />
     <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\Lista.cs" />
+    <Compile Include="Models\MD5ExtensionMethod.cs" />
+    <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

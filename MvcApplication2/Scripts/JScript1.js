@@ -89,7 +89,7 @@ zg.viewModel = function () {
                 type: "POST",
                 data: ko.toJSON(cancionesSeleccionadas)
             }).success(function(res) {
-                var a = 0;
+                    alert(res.Message);
             });
         };
     return {

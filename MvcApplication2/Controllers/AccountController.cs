@@ -28,8 +28,22 @@ namespace MvcApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(model.UserName, model.Password))
+                
+                //if (Membership.ValidateUser(model.UserName, model.Password))
+                Persona p= new Persona();
+                if (Db.ValidateUser(model.UserName, model.Password,ref p))
                 {
+
+                    if (HttpContext.Application["Roles"] == null)
+                    {
+                        HttpContext.Application["Roles"] = p.Roles;
+                        List<string> roles = HttpContext.Application["Roles"] as List<string>;
+                    }
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(0, model.UserName,DateTime.Now,DateTime.Now.AddMinutes(10),true, model.UserName + ',' + p.Roles.First());
+                    Session["UniqueUserId"]          = model.UserName;
+                    string encTicket                = FormsAuthentication.Encrypt(ticket);
+                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket) { Expires = DateTime.Now.AddMinutes(10) });
+
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -43,7 +57,7 @@ namespace MvcApplication2.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    ModelState.AddModelError("", "El usuario o la contraseña es incorrecta.");
                 }
             }
 
@@ -56,6 +70,8 @@ namespace MvcApplication2.Controllers
 
         public ActionResult LogOff()
         {
+            HttpContext.Application["Roles"] = null;
+            Session["UniqueUserId"] = null;
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
