@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table id="list" class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <td>Cancion</td>
+            <td>Tipo</td>
+            <td>Ultima Vez</td>            
+        </tr>
+    </thead>
+    <tbody>
+        <!-- ko foreach: listado -->
+        <tr>
+            <td><span data-bind="text: nombre"></span></td>
+            <td><span data-bind="text: tipo"></span></td>
+            <td><span data-bind="date: ultimaVez"></span></td>  
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
+                        options<span class="caret"></span>
+                    </button>
+            
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Editar</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a href="#">Ver Letra  </a></li>            
+                        <li><a href="#">Ver Acordes</a></li>
+                    </ul>
+                </div>
+            </td>          
+        </tr>
+        <!-- /ko-->
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        var model = new zg.cancionVM();
+        model.load();
+        ko.applyBindings(model);
+    });
+</script>
+
+
+<script src="~/Scripts/KnockoutModel/cancion_model.js"></script>
+<script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bs-component">
+    <div class="alert alert-info">
+        <strong>@Html.ActionLink("Canciones", "Index", "Cancion")</strong>
+        
+    </div>
+</div>
+<div class="bs-component">
+    <div class="alert alert-success">
+        <strong>
+            @Html.ActionLink("Lista Activa", "Index", "Lista")
+        </strong>
+    </div>
+</div>
+<div class="bs-component">
+    <div class="alert alert-warning">
+        <strong>@Html.ActionLink("Usuarios", "Index", "Usuario")</strong>
+    </div>
+</div>
+    @*<button class="btn btn-primary" type="button">Canciones</button>
+    <button class="btn btn-success" type="button">Lista</button>
+    <button class="btn btn-warning" type="button">Usuarios</button>*@
+
+

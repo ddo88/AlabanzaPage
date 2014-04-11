@@ -2,15 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace MvcApplication1.Models
 {
     public class Cancion
     {
-        public string Nombre          { get; set; }
-        public string Tipo            { get; set; }
-        public DateTime UltimoDomingo { get; set; }
+        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
+        public string Id { get; set; }
+        public string Nombre { get; set; }
+        public string Tipo { get; set; }
+        public DateTime UltimaVez { get; set; }
     }
+
+    //public class Cancion
+    //{
+    //    public string Nombre          { get; set; }
+    //    public string Tipo            { get; set; }
+    //    public DateTime UltimoDomingo { get; set; }
+    //}
 
     public class ViewModel {
 
@@ -28,19 +39,19 @@ namespace MvcApplication1.Models
             Cancion c1 = new Cancion();
             c1.Nombre = "";
             c1.Tipo = "";
-            c1.UltimoDomingo = DateTime.Now;
+            c1.UltimaVez = DateTime.Now;
             Cancion c2 = new Cancion();
             c2.Nombre = "";
             c2.Tipo = "";
-            c2.UltimoDomingo = DateTime.Now;
+            c2.UltimaVez = DateTime.Now;
             Cancion c3 = new Cancion();
             c3.Nombre = "";
             c3.Tipo = "";
-            c3.UltimoDomingo = DateTime.Now;
+            c3.UltimaVez = DateTime.Now;
             Cancion c4 = new Cancion();
             c4.Nombre = "";
             c4.Tipo = "";
-            c4.UltimoDomingo = DateTime.Now;
+            c4.UltimaVez = DateTime.Now;
             Canciones.Add(c1);
             Canciones.Add(c2);
             Canciones.Add(c3);

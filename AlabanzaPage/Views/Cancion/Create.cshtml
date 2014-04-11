@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Agregar Canción";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/KnockoutModel/cancion_model.js"></script>
+<script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>
+<h2>Create</h2>
+
+<form class="form-horizontal">
+    <fieldset>
+        <!-- ko with: cancion-->
+        <div class="form-group">
+            <label for="nombre" class="col-sm-2 control-label">Nombre:</label>
+            <input id="nombre" class="col-sm-6" data-bind="value: nombre" placeholder="Nombre de la Canción" />
+        </div>
+        <div class="form-group">
+            <label for="tipo" class="col-sm-2 control-label">tipo:</label>
+            <select id="tipo" class="col-sm-6" data-bind="value: tipo">
+                <option>Adoracion</option>
+                <option>Alabanza</option>
+                <option>N/S</option>
+            </select>
+            </div>
+        <div class="form-group">
+            <label for="letra"   class="col-sm-2 control-label">letra:</label>
+            <textarea id="letra" class="col-sm-6" data-bind="value: letra" rows="5"></textarea>            
+        </div>
+        <div class="form-group">
+            <label for="acordes" class="col-sm-2 control-label">acordes:</label>
+            <textarea id="acordes" class="col-sm-6" data-bind="value: acordes" rows="5"></textarea>                        
+        </div>
+        <div class="form-group">
+            <label for="lasttime" class="col-sm-2 control-label">ultima vez:</label>
+            <input id="lasttime"  type="date" data-bind="date: ultimaVez" />
+        </div>
+        <!-- /ko-->
+        <div class="form-group">
+            <input class="col-sm-offset-6 col-sm-2" type="submit" data-bind="click: save" />
+        </div>
+</fieldset>
+</form>
+
+
+
+ 
+<script type="text/javascript">
+    $(document).ready(function () {
+        var model = new zg.cancionVM();
+        ko.applyBindings(model);
+    });
+</script>
