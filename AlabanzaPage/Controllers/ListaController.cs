@@ -18,8 +18,17 @@ namespace AlabanzaPage.Controllers
         // GET: /Lista/
         public ActionResult Index()
         {
-            context.GetCollection<Lista>(Settings.Default.ListaCollection).FindOne(Query.)
             return View();
+        }
+
+        public ActionResult Ultima()
+        {
+            var a = context.GetCollection<Lista>(Settings.Default.ListaCollection).FindAll().SetSortOrder(SortBy.Descending("_id"));
+            if (a.Count() > 0)
+            {
+                return Json(a.First(),JsonRequestBehavior.AllowGet);                
+            }
+            return Json("", JsonRequestBehavior.AllowGet);
         }
 
         //

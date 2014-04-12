@@ -5,9 +5,15 @@ zg.listaVM = function () {
     listado = ko.observableArray(),
     loadLista = function () {
         send('/Lista/Ultima', 'Get', undefined, function (data) {
-            listado.removeAll();
-            listado(listaResult(data));
-            listado.valueHasMutated();
+            if (data === "")
+            { }
+            else
+            {
+                //codigo cuando recibo un lista de verdad
+                //listado.removeAll();
+                //listado(listaResult(data));
+                //listado.valueHasMutated();
+            }            
         });
     },
     loadCanciones = function () {
@@ -16,13 +22,31 @@ zg.listaVM = function () {
             listado(cancionesListResult(data));
             listado.valueHasMutated();
         });
+    },
+    select = function (elm)
+    {
+        if (elm.selected() === false)
+        {
+            elm.selected(true);
+            lista.canciones.push(elm);
+        }
+        else
+        {
+            elm.selected(false);
+            lista.canciones.remove(elm);
+        }
+        
+
+        
+        //lista.canciones.add(elm);
     };
 
     return {
         lista:         lista,
         listado:       listado,
         loadLista:     loadLista,
-        loadCanciones: loadCanciones,        
+        loadCanciones: loadCanciones,
+        select:select
     };
 };
 

@@ -6,11 +6,12 @@ zg.cancion = function () {
     this.letra   = ko.observable();
     this.acordes = ko.observable();
     this.ultimaVez = ko.observable();
-    this.cls = ko.computed(function () {
-        if (this.tipo() !== undefined)
-            return this.tipo().toLowerCase();
-        return this.tipo();
-    }, this);
+    this.selected = ko.observable(false);
+    //this.cls = ko.computed(function () {
+    //    if (this.tipo() !== undefined)
+    //        return this.tipo().toLowerCase();
+    //    return this.tipo();
+    //}, this);
 };
 
 

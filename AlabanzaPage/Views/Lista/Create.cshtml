@@ -4,22 +4,96 @@
 }
 <h2>Create</h2>
 
-<div style="display:none" >
-    <table></table>
-</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Listado Canciones</h4>
+            </div>
+            <div class="modal-body">
+                <!--div id="listadoCanciones" style="display:none"-->
+                <div id="listadoCanciones">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr><td>Nombre</td><td>Tipo</td><td>Ultima Vez</td></tr>
+                        </thead>
+                        <tbody>
+                            <!-- ko foreach: listado-->
+                            <tr data-bind="click: $root.select,css: {success: selected}">
+                                <td><span data-bind="text: nombre"></span></td>
+                                <td><span data-bind="text: tipo"></span></td>
+                                <td><span data-bind="date: ultimaVez"></span></td>
+                            </tr>
+                            <!-- /ko-->
+                        </tbody>
+                    </table>
+                    @*<input id="btnCloseCanciones" type="button" value="Cerrar listado Canciones">*@
+                </div>
+                @*<input id="btnCanciones" type="button" value="Ver listado Canciones">*@
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--button type="button" class="btn btn-primary">Save changes</!--button-->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Ver Listado Canciones
+</button>
 
 
+<!-- ko with: lista-->
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr><td>Nombre</td><td>Tipo</td><td>Orden</td></tr>
+    </thead>
+    <tbody>
+    <!-- ko foreach: canciones-->
+    <tr>
+        <td><span data-bind="text: nombre"></span></td>
+        <td><span data-bind="text: tipo"></span></td>                
+        <td></td>                
+    </tr>
+    <!-- /ko-->
+    </tbody>
+</table>
+<!--/ko-->
 
-<script>
-    $(document).ready(function () {
-        var model = new zg.listaVM();
-        model.loadLista();
-        ko.applyBindings(model);
-    });
-</script>
+    @*
+        <form>
+            <!-- ko with: lista-->
+            <fieldset>
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input id="fecha" type="date" data-bind="date: fecha" />
+                </div>
 
-<script src="~/Scripts/KnockoutModel/lista_model.js"></script>
-<script src="~/Scripts/knockoutViewModel/lista_viewmodel.js"></script>
-<script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>
-<script src="~/Scripts/KnockoutModel/cancion_model.js"></script>
+            </fieldset>
+            <!-- /ko -->
+        </form>
+    *@
+
+    <script>
+        $(document).ready(function () {
+            //$("#btnCanciones").click(function () {
+            //    $("#listadoCanciones").show(2000);
+            //    $("#btnCanciones").hide(1000);
+            //})
+            //$("#btnCloseCanciones").click(function () {
+            //    $("#listadoCanciones").hide(2000);
+            //    $("#btnCanciones").show(1000);
+            //})
+            var model = new zg.listaVM();
+            model.loadCanciones();
+            ko.applyBindings(model);
+        });
+    </script>
+
+    <script src="~/Scripts/KnockoutModel/lista_model.js"></script>
+    <script src="~/Scripts/knockoutViewModel/lista_viewmodel.js"></script>
+    <script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>
+    <script src="~/Scripts/KnockoutModel/cancion_model.js"></script>
 
