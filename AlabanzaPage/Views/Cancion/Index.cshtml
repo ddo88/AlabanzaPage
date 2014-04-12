@@ -10,7 +10,7 @@
         <tr>
             <td>Cancion</td>
             <td>Tipo</td>
-            <td>Ultima Vez</td>            
+            <td>Ultima Vez</td>
         </tr>
     </thead>
     <tbody>
@@ -18,34 +18,35 @@
         <tr>
             <td><span data-bind="text: nombre"></span></td>
             <td><span data-bind="text: tipo"></span></td>
-            <td><span data-bind="date: ultimaVez"></span></td>  
+            <td><span data-bind="date: ultimaVez"></span></td>
             <td>
                 <div class="btn-group">
                     <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
                         options<span class="caret"></span>
                     </button>
-            
+
                     <ul class="dropdown-menu">
-                        <li><a href="#">Editar</a></li>
+                        <li><a href="#" data-bind="click: $parent.edit">Editar</a></li>
                         <li role="presentation" class="divider"></li>
-                        <li><a href="#">Ver Letra  </a></li>            
+                        <li><a href="#">Ver Letra  </a></li>
                         <li><a href="#">Ver Acordes</a></li>
                     </ul>
                 </div>
-            </td>          
+            </td>
         </tr>
         <!-- /ko-->
     </tbody>
 </table>
 
 <script>
-    $(document).ready(function () {
-        var model = new zg.cancionVM();
-        model.load();
-        ko.applyBindings(model);
-    });
-</script>
+        $(document).ready(function () {
+            var model = new zg.cancionVM();
 
+            @*model.listado(AjaxResult('@Html.Raw(jsonData)'));*@
+            model.load();
+            ko.applyBindings(model);
+        });
+</script>
 
 <script src="~/Scripts/KnockoutModel/cancion_model.js"></script>
 <script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>

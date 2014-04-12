@@ -716,6 +716,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
     <Content Include="Scripts\KnockoutModel\cancion_model.js" />
     <Content Include="Scripts\KnockoutModel\lista_model.js" />
     <Content Include="Scripts\KnockoutModel\usuario_model.js" />
@@ -739,6 +741,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Cancion\Create.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Cancion\Edit.cshtml" />
     <Content Include="Views\Cancion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

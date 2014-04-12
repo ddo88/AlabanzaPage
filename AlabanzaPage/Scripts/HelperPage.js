@@ -13,6 +13,18 @@
     }
     return list;
 };
+var AjaxResult2 = function (result) {
+    var a = result;
+    
+    var n = new zg.cancion();
+        n.nombre(a.Nombre);
+        n.tipo(a.Tipo);
+        n.ultimaVez(a.UltimaVez);
+        n.letra(a.Letra);
+        n.acordes(a.Acordes);
+        n.id(a.Id);
+        return n;    
+};
 
 var send = function (url, type, data, callback) {
     if (data === undefined) {

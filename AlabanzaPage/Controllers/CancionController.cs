@@ -21,13 +21,16 @@ namespace AlabanzaPage.Controllers
         // GET: /Canciones/
         public ActionResult Index()
         {
+            //var listado=context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll();
+            //List<Cancion> listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll().ToList<Cancion>();
+            //return View(listado);
             return View();
         }
 
-        [OutputCache(Duration=60)]
+        [OutputCache(Duration = 60)]
         public ActionResult Listado()
         {
-            var listado=context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll();
+            var listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll();
             return Json(listado, JsonRequestBehavior.AllowGet);
         }
 
@@ -46,7 +49,7 @@ namespace AlabanzaPage.Controllers
         {
             try
             {
-                context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Insert(JsonConvert.DeserializeObject<Cancion>(Request.Form[0]));
+                context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Insert(JsonConvert.DeserializeObject<Cancion>(Request.Form[0]));                
                 // TODO: Add insert logic here
                 return RedirectToAction("Index");
             }
@@ -58,29 +61,39 @@ namespace AlabanzaPage.Controllers
 
         //
         // GET: /Canciones/Edit/5
-
+        //[HttpPost]
         public ActionResult Edit(string id)
         {
-            return View(context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Find(Query.EQ("_id", id)).First());
+            //var q = JsonConvert.DeserializeObject<Cancion>(Request.Form[0]);
+            //context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Update(Query.EQ("_id", id), Update.Replace(JsonConvert.DeserializeObject<Cancion>(Request.Form[0])), UpdateFlags.Upsert)
+            var q = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Find(Query.EQ("_id", id)).First();
+            return View(q);
         }
-
-        //
-        // POST: /Canciones/Edit/5
-
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit()
         {
-            try
-            {
-                // TODO: Add update logic here
-                context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Update(Query.EQ("_id", id), Update.Replace(JsonConvert.DeserializeObject<Cancion>(Request.Form[0])), UpdateFlags.Upsert);
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            var q = JsonConvert.DeserializeObject<Cancion>(Request.Form[0]);
+            context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Update(Query.EQ("_id", q.Id), Update.Replace(q), UpdateFlags.Upsert);
+            return View(q);
         }
+
+        ////
+        //// POST: /Canciones/Edit/5
+
+        //[HttpPost]
+        //public ActionResult Edit(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
+        //        context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Update(Query.EQ("_id", id), Update.Replace(JsonConvert.DeserializeObject<Cancion>(Request.Form[0])), UpdateFlags.Upsert);
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         //
         // GET: /Canciones/Delete/5
