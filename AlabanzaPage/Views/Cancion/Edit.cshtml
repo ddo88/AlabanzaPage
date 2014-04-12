@@ -48,7 +48,7 @@
 <script type="text/javascript">
     $(function () {
         var vm= new zg.cancionVM();
-       vm.cancion = AjaxResult2(@Html.Raw(jsonData));
+        vm.cancion = cancionResult(@Html.Raw(jsonData));
       ko.applyBindings(vm);
   });
 </script>

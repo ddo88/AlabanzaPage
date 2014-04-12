@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Create</h2>
+
+<div style="display:none" >
+    <table></table>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        var model = new zg.listaVM();
+        model.loadLista();
+        ko.applyBindings(model);
+    });
+</script>
+
+<script src="~/Scripts/KnockoutModel/lista_model.js"></script>
+<script src="~/Scripts/knockoutViewModel/lista_viewmodel.js"></script>
+<script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>
+<script src="~/Scripts/KnockoutModel/cancion_model.js"></script>
+

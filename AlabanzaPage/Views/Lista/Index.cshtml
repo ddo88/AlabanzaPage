@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Lista Actual</h2>
+<table id="list" class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <td>Cancion</td>
+            <td>Tipo</td>
+            <td>Ultima Vez</td>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- ko foreach: listado -->
+        <tr>
+            <td><span data-bind="text: nombre"></span></td>
+            <td><span data-bind="text: tipo"></span></td>
+            <td><span data-bind="date: ultimaVez"></span></td>
+        </tr>
+        <!-- /ko-->
+    </tbody>
+</table>
+            <script>
+                $(document).ready(function () {
+                    var model = new zg.listaVM();
+                    model.loadLista();
+                    ko.applyBindings(model);
+                });
+            </script>
+
+            <script src="~/Scripts/KnockoutModel/lista_model.js"></script>
+            <script src="~/Scripts/knockoutViewModel/lista_viewmodel.js"></script>
+            <script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>
+            <script src="~/Scripts/KnockoutModel/cancion_model.js"></script>
+

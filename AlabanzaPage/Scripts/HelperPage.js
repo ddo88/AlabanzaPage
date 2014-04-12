@@ -1,4 +1,5 @@
-﻿var AjaxResult = function (result) {
+﻿
+var cancionesListResult = function (result) {
     var a = result;
     var list = ([]);
     for (var i = 0; i < result.length; i++) {
@@ -13,7 +14,8 @@
     }
     return list;
 };
-var AjaxResult2 = function (result) {
+
+var cancionResult = function (result) {
     var a = result;
     
     var n = new zg.cancion();
@@ -24,6 +26,19 @@ var AjaxResult2 = function (result) {
         n.acordes(a.Acordes);
         n.id(a.Id);
         return n;    
+};
+
+var listaResult = function (result) {
+    var a = result;
+
+    var n = new zg.cancion();
+    n.nombre(a.Nombre);
+    n.tipo(a.Tipo);
+    n.ultimaVez(a.UltimaVez);
+    n.letra(a.Letra);
+    n.acordes(a.Acordes);
+    n.id(a.Id);
+    return n;
 };
 
 var send = function (url, type, data, callback) {

@@ -722,6 +722,7 @@
     <Content Include="Scripts\KnockoutModel\lista_model.js" />
     <Content Include="Scripts\KnockoutModel\usuario_model.js" />
     <Content Include="Scripts\knockoutViewModel\cancion_viewmodel.js" />
+    <Content Include="Scripts\knockoutViewModel\lista_viewmodel.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-langs.js" />
     <Content Include="Scripts\moment-with-langs.min.js" />
@@ -743,6 +744,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cancion\Edit.cshtml" />
     <Content Include="Views\Cancion\Index.cshtml" />
+    <Content Include="Views\Lista\Index.cshtml" />
+    <Content Include="Views\Lista\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

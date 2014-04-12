@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AlabanzaPage.App_Start;
+using AlabanzaPage.Models;
+using AlabanzaPage.Properties;
+using MongoDB.Driver.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +12,13 @@ namespace AlabanzaPage.Controllers
 {
     public class ListaController : Controller
     {
+
+        public readonly Context context = new Context(); 
         //
         // GET: /Lista/
-
         public ActionResult Index()
         {
+            context.GetCollection<Lista>(Settings.Default.ListaCollection).FindOne(Query.)
             return View();
         }
 
@@ -25,7 +31,6 @@ namespace AlabanzaPage.Controllers
 
         //
         // POST: /Lista/Create
-
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -43,7 +48,6 @@ namespace AlabanzaPage.Controllers
 
         //
         // GET: /Lista/Edit/5
-
         public ActionResult Edit(int id)
         {
             return View();
@@ -69,14 +73,13 @@ namespace AlabanzaPage.Controllers
 
         //
         // GET: /Lista/Delete/5
-        public ActionResult Suggestions()
+        public ActionResult Lista()
         {
             return View();
         }
 
         //
         // POST: /Lista/Delete/5
-
         [HttpPost]
         public ActionResult Suggestions(int id, FormCollection collection)
         {

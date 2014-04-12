@@ -20,7 +20,7 @@ zg.cancionVM = function () {
         load    = function (){
             send('/Cancion/Listado/', 'Get',undefined, function (data) {
                 listado.removeAll();
-                listado(AjaxResult(data));
+                listado(cancionesListResult(data));
                 listado.valueHasMutated();});},
         saveCancion = function (elm){
             send('/Cancion/Save/', 'POST', ko.toJSON(elm.cancion), function (res) {

@@ -41,8 +41,6 @@
 <script>
         $(document).ready(function () {
             var model = new zg.cancionVM();
-
-            @*model.listado(AjaxResult('@Html.Raw(jsonData)'));*@
             model.load();
             ko.applyBindings(model);
         });

@@ -21,9 +21,6 @@ namespace AlabanzaPage.Controllers
         // GET: /Canciones/
         public ActionResult Index()
         {
-            //var listado=context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll();
-            //List<Cancion> listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll().ToList<Cancion>();
-            //return View(listado);
             return View();
         }
 
@@ -50,7 +47,6 @@ namespace AlabanzaPage.Controllers
             try
             {
                 context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Insert(JsonConvert.DeserializeObject<Cancion>(Request.Form[0]));                
-                // TODO: Add insert logic here
                 return RedirectToAction("Index");
             }
             catch
@@ -74,51 +70,8 @@ namespace AlabanzaPage.Controllers
         {
             var q = JsonConvert.DeserializeObject<Cancion>(Request.Form[0]);
             context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Update(Query.EQ("_id", q.Id), Update.Replace(q), UpdateFlags.Upsert);
-            return View(q);
+            return Json("{State:'OK'}", JsonRequestBehavior.AllowGet);            
         }
 
-        ////
-        //// POST: /Canciones/Edit/5
-
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-        //        context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Update(Query.EQ("_id", id), Update.Replace(JsonConvert.DeserializeObject<Cancion>(Request.Form[0])), UpdateFlags.Upsert);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //
-        // GET: /Canciones/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Canciones/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
