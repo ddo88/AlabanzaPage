@@ -40,7 +40,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
     Ver Listado Canciones
 </button>
 
@@ -55,42 +55,21 @@
     <tr>
         <td><span data-bind="text: nombre"></span></td>
         <td><span data-bind="text: tipo"></span></td>                
-        <td></td>                
+        <td><span data-bind="click: $root.up" class="ui-icon-arrow-1-n" >Up</span></td>                
+        <td><span data-bind="click: $root.down" class="ui-icon-arrow-1-s">Down</span></td>                
     </tr>
     <!-- /ko-->
     </tbody>
 </table>
 <!--/ko-->
 
-    @*
-        <form>
-            <!-- ko with: lista-->
-            <fieldset>
-                <div class="form-group">
-                    <label for="fecha">Fecha:</label>
-                    <input id="fecha" type="date" data-bind="date: fecha" />
-                </div>
-
-            </fieldset>
-            <!-- /ko -->
-        </form>
-    *@
-
-    <script>
-        $(document).ready(function () {
-            //$("#btnCanciones").click(function () {
-            //    $("#listadoCanciones").show(2000);
-            //    $("#btnCanciones").hide(1000);
-            //})
-            //$("#btnCloseCanciones").click(function () {
-            //    $("#listadoCanciones").hide(2000);
-            //    $("#btnCanciones").show(1000);
-            //})
-            var model = new zg.listaVM();
+<script>
+    $(document).ready(function () {
+        var model = new zg.listaVM();
             model.loadCanciones();
             ko.applyBindings(model);
         });
-    </script>
+</script>
 
     <script src="~/Scripts/KnockoutModel/lista_model.js"></script>
     <script src="~/Scripts/knockoutViewModel/lista_viewmodel.js"></script>

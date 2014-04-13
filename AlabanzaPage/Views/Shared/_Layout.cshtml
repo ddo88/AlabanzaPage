@@ -6,7 +6,7 @@
     <title>@ViewBag.Title</title>
     
     <!--link href="~/Content/bootstrap.min.css" rel="stylesheet" /-->
-    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+    
     <link href="~/Content/bootstrap.yeti.min.css" rel="stylesheet" />
 
     
@@ -51,6 +51,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Lista<span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="download">
                             <li>@Html.ActionLink("Lista Activa", "Index", "Lista")</li>
+                            <li>@Html.ActionLink("Nueva", "Create", "Lista")</li>
                             <li>@Html.ActionLink("Sugerencias", "Sugerencias", "Lista")</li>
                             <li>@Html.ActionLink("Editar Lista", "Edit", "Lista")</li>
                         </ul>

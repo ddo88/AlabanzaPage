@@ -35,10 +35,13 @@ zg.listaVM = function () {
             elm.selected(false);
             lista.canciones.remove(elm);
         }
-        
+    },
+    up = function (elm) {
+        lista.canciones.move(lista.canciones.indexOf(elm), -1)
 
-        
-        //lista.canciones.add(elm);
+    },
+    down = function (elm) {
+        lista.canciones.move(lista.canciones.indexOf(elm), 1);
     };
 
     return {
@@ -46,7 +49,9 @@ zg.listaVM = function () {
         listado:       listado,
         loadLista:     loadLista,
         loadCanciones: loadCanciones,
-        select:select
+        select:        select,
+        up:            up,
+        down:          down
     };
 };
 
