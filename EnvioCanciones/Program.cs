@@ -6,6 +6,7 @@ using System.Text;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Driver;
+using System.Text.RegularExpressions;
 
 namespace EnvioCanciones
 {
@@ -14,12 +15,12 @@ namespace EnvioCanciones
         static void Main(string[] args)
         {
 
-            string s = "mongodb://pagiel:pagiel@127.0.0.1:27017/alabanza";
-            MongoClient mc = new MongoClient(s);
-            MongoServer server = mc.GetServer();
-            MongoDatabase db = server.GetDatabase("alabanza");
-            MongoCollection<Cancion> _evento = db.GetCollection<Cancion>("canciones");
-            _evento.InsertBatch(GetList());
+            //string s = "mongodb://pagiel:pagiel@127.0.0.1:27017/alabanza";
+            //MongoClient mc = new MongoClient(s);
+            //MongoServer server = mc.GetServer();
+            //MongoDatabase db = server.GetDatabase("alabanza");
+            //MongoCollection<Cancion> _evento = db.GetCollection<Cancion>("canciones");
+            //_evento.InsertBatch(GetList());
 
             //MongoCollection<Persona> _evento = db.GetCollection<Persona>("Personas");
             
@@ -33,6 +34,40 @@ namespace EnvioCanciones
             //{
             //    _evento.Insert(a);
             //}
+            string s= @"{title:SEÑOR MI DIOS}
+
+
+[Dm]SEÑOR MI DIOS
+DIGNO TU [Bb]ERES
+DE SU[C]BLIME ADORA[Dm]CIÓN 
+
+[Dm]A TI MIS LABIOS 
+NO CESEN [Bb]NUNCA
+[C]JAMAS DE PROCLA[Dm]MAR
+
+
+{start_chorus}
+TÚ ERES [F]EXCELSO
+DIOS PODE[C]ROSO
+REY DE [Bb]REYES Y SE[Gm]ÑOR DE SE[A]ÑORES
+TU NOMBRE ES [F]GRANDE
+AQUÍ EN LA [C]TIERRA
+EN EL [Bb]CIELO Y [Gm]TAMBIÉN EL
+[A]UNIVERSO
+{end_chorus}
+
+
+[Dm]TODAS LAS LENGUAS
+Y LAS [Bb]NACIONES CON[C]FIESEN AL [Dm]SEÑOR
+
+[Dm]TAMBIÉN LA LUNA
+Y LAS [Bb]ESTRELLAS Y EL [C]SOL
+TE ALABA[Dm]RAN
+
+";
+            var ch=Chord.parseChord(s);
+            Console.ReadLine();
+
         }
 
         public static List<Cancion> GetList()
@@ -352,7 +387,255 @@ namespace EnvioCanciones
 
         //}
     }
+    public enum Item
+    { 
+        Etiqueta,
+        Acorde
+    }
+    public class Pos
+    {
+        public Pos(int x, int y, int linea,string text)
+        {
+            X = x;
+            Y = y;
+            Linea = linea;
+            Text = text;
+        }
+        public int    X { get; set; }
+        public int    Y { get; set; }
+        public int    Linea { get; set; }
+        public string Text { get; set; }
+    }
 
+    public static class Chord
+    {
+
+        public static string GetTitle (string s)
+        {
+            return GetRegex(RegexList.Title).Match(s).Value.Replace("{title:", "").Replace("}", "");
+        }
+        public static string GetLyrics(string s)
+        {
+            string a = GetRegex(RegexList.Title).Replace(s, String.Empty);
+            return GetRegex(RegexList.Chords).Replace(a, String.Empty);
+        }
+        public static string GetChords(string s) {
+
+            s = Clean(s);
+
+            string ss = GetRegex(RegexList.Chords).Replace(s, "*");
+            
+            Queue<string> notas = ChordsToQueue(s);
+            Queue<int> pos = new Queue<int>();
+            
+            string[]  w= ss.Replace("\r\n", "+").Split('+');
+            StringBuilder result = new StringBuilder();
+            foreach (string i in w)
+            {
+                var ch = i.ToCharArray();
+                int j=ch.Count(z => z == '*');
+                if (j > 0) 
+                {
+                    result.AppendLine(GetLineWithChords(notas, pos, i, j));                    
+                    result.AppendLine(i.Replace("*",""));
+                }
+                else
+                    result.AppendLine(i);
+                
+            }
+            return result.ToString();
+        }
+
+        private static string GetLineWithChords(Queue<string> notas, Queue<int> pos, string i, int j)
+        {
+            int idx = -1;
+            for (int p = 0; p < j; p++)
+            {
+                idx = i.IndexOf('*', idx + 1);
+                pos.Enqueue(idx);
+            }
+            string line = "";
+            int ant = 0;
+            int act = 0;
+            while (pos.Count > 0)
+            {
+                //ant = pos.Dequeue() - ant;
+                //line += notas.Dequeue().PadLeft(ant);
+                act = pos.Dequeue();
+                line += notas.Dequeue().PadLeft(act - ant);
+                ant = act;
+            }
+            return line;
+        }
+
+        private static string Clean(string s)
+        {
+            s = GetRegex(RegexList.Title).Replace(s, GetTitle(s)).Replace("{start_chorus}", "Coro:").Replace("{end_chorus}", "");
+            return s;
+        }
+
+        private static Queue<string> ChordsToQueue(string s)
+        {
+            Queue<string> notas = new Queue<string>();
+            MatchCollection q = GetRegex(RegexList.Chords).Matches(s);
+            foreach (Match a in q)
+            {
+                notas.Enqueue(a.Value.Replace("[", "").Replace("]", ""));
+            }
+            return notas;
+        }
+
+
+        //public static string GetChord(string s)
+        //{
+        //    return "";
+        //}
+                
+        //public static string parseChord(string s)
+        //{
+        //    //s=s.Replace("\r\n", "*");
+        //    string[]  w= s.Replace("\r\n", "*").Split('*');
+        //    //
+            
+        //    //hallar etiquetas {
+
+        //    Dictionary<Item, List<Pos>> dictionary = new Dictionary<Item, List<Pos>>();
+        //    dictionary.Add(Item.Etiqueta, new List<Pos>());
+        //    dictionary.Add(Item.Acorde, new List<Pos>());
+        //    int line = 0;
+        //    foreach (var a in w)
+        //    {
+        //        if (a.Contains('{'))
+        //        {
+        //            GetEtiqueta(dictionary, line, a);
+        //        }
+
+        //        if (a.Contains('['))
+        //        {
+        //            GetAcordes(dictionary, line, a);
+        //        }
+        //        line++;
+        //    }
+        //    line=0;
+        //    var lst = dictionary[Item.Etiqueta];
+        //    var acd = dictionary[Item.Acorde];
+            
+        //    StringBuilder sb = new StringBuilder();
+        //    foreach (var a in w)
+        //    {
+        //        var etiqueta=lst.Where(x => x.Linea == line).ToList();
+        //        var acorde = acd.Where(x => x.Linea == line).ToList();
+        //        foreach (var etq in etiqueta)
+        //        {
+        //            sb.Append(etq.Text);
+        //        }
+        //        bool sw = false;
+        //        int idx=0;
+        //        string textt = a;
+        //        foreach (var crd in acorde)
+        //        {
+        //            if(sw!=true)
+        //            {
+        //                sb.AppendLine();
+        //            }
+        //            sb.Append(crd.Text.PadLeft(crd.X - idx, ' '));
+        //            textt = a.Remove(crd.X, crd.Y - crd.X);
+        //            idx=crd.X;
+        //        }
+        //        if(acorde.Count>0)
+        //            sb.Append(textt);
+
+        //        sb.Append("\r\n");
+        //        line++;
+        //    }
+        //    //hallar acordes y la linea en la que estan posicionados
+
+            
+        //    string chord = "";
+
+        //    return s;
+        //}
+
+        //private static void GetAcordes(Dictionary<Item, List<Pos>> dictionary, int line, string a)
+        //{
+        //    int i = 0;
+        //ini:
+        //    int p = a.IndexOf('[', i);
+        //    int q = a.IndexOf(']', p);
+        //    i = q;
+        //    p++;
+        //    dictionary[Item.Acorde].Add(new Pos(p, q, line,a.Substring(p,q-p)));
+        //    int j = a.IndexOf('[', q);
+        //    if (j != -1)
+        //        goto ini;
+        //}
+
+        //private static void GetEtiqueta(Dictionary<Item, List<Pos>> dictionary, int line, string a)
+        //{
+        //    int i = 0;
+        //    ini:
+        //    int p = a.IndexOf('{', i);
+        //    int q = a.IndexOf('}', p);
+        //    i = q;
+        //    int pp=p;
+        //    if(a.Contains("title:"))
+        //    pp= p + 7;
+
+        //    dictionary[Item.Etiqueta].Add(new Pos(p, q, line, a.Substring(pp, q - pp)));
+        //    int j = a.IndexOf('{', q);
+        //    if (j != -1)
+        //        goto ini;
+        //}
+        static Regex GetRegex(RegexList r)
+        {
+            string s = "";
+            switch(r)
+            {
+                case RegexList.Title:
+                    s = @"(?<title>\{title:[\w\s]*\})";
+                    break;
+                case RegexList.Chords:
+                    s = @"(?<acordes>\[[C|D|E|F|G|A|B]{1}[maj|m|b|#|0-9]*(\/[C|D|E|F|G|A|B][maj|m|b|#|0-9]*)*\])";
+                    break;
+                case RegexList.Chorus:
+                    s = @"(?<chorus>\{start_chorus\}[\w\W\s]*\{end_chorus\})";
+                    break;
+            }
+            return new Regex(s);
+        }
+        internal static object parseChord(string s)
+        {
+            //string title   = @"(?<title>\{title:[\w\s]*\})";
+            ////string chords1 = @"(?<acordes>\[[C|D|E|F|G|A|B]{1}[m|b|#|0-9]*\])";
+            //string chords2 = @"(?<acordes>\[[C|D|E|F|G|A|B]{1}[maj|m|b|#|0-9]*(\/[C|D|E|F|G|A|B][maj|m|b|#|0-9]*)*\])";
+            //string chorus  = @"(?<chorus>\{start_chorus\}[\w\W\s]*\{end_chorus\})";
+
+            //Regex r1   = new Regex(title);
+            //var match1 = r1.Match(s);
+            //Regex r2   = new Regex(chords2);
+            //var match2 = r2.Matches(s);
+
+            //Regex r3 = new Regex(chorus);
+            //var match3 = r3.Match(s);
+
+            //Regex r4 = new Regex(chords2);
+            //string sololetra=r4.Replace(s,String.Empty);
+
+            //int j=0;
+
+            Console.WriteLine(GetTitle(s));
+
+            Console.WriteLine(GetLyrics(s));
+            Console.WriteLine("----");
+            Console.WriteLine(GetChords(s));
+            return new object();
+        }
+    }
+
+    public enum RegexList
+    {
+        Title,Chords,Chorus
+    }
     public class Cancion
     {
         public Cancion()
