@@ -1,0 +1,47 @@
+﻿@model AlabanzaPage.Models.Cancion
+
+@{
+    ViewBag.Title = "Letra";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>VerLetra</h2>
+
+<fieldset>
+    <legend>Cancion</legend>
+
+    <div class="display-label">
+        <b>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+        <b>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tipo)
+    </div>
+
+    <div class="display-label">
+        <b>
+            @Html.DisplayNameFor(model => model.Letra)
+        </b></br>
+    </div>
+    <div class="display-field">
+        <div id="letra">
+            @Html.Raw(Model.Letra)
+        </div>
+        @*@Html.TextAreaFor(model => model.Letra, 30, 80, new { })*@
+        @*@Html.DisplayFor(model => model.Letra)*@
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -15,12 +15,12 @@ namespace EnvioCanciones
         static void Main(string[] args)
         {
 
-            //string s = "mongodb://pagiel:pagiel@127.0.0.1:27017/alabanza";
-            //MongoClient mc = new MongoClient(s);
-            //MongoServer server = mc.GetServer();
-            //MongoDatabase db = server.GetDatabase("alabanza");
-            //MongoCollection<Cancion> _evento = db.GetCollection<Cancion>("canciones");
-            //_evento.InsertBatch(GetList());
+            string s = "mongodb://pagiel:pagiel@127.0.0.1:27017/alabanza";
+            MongoClient mc = new MongoClient(s);
+            MongoServer server = mc.GetServer();
+            MongoDatabase db = server.GetDatabase("alabanza");
+            MongoCollection<Cancion> _evento = db.GetCollection<Cancion>("canciones");
+            _evento.InsertBatch(GetList());
 
             //MongoCollection<Persona> _evento = db.GetCollection<Persona>("Personas");
             
@@ -34,38 +34,39 @@ namespace EnvioCanciones
             //{
             //    _evento.Insert(a);
             //}
-            string s= @"{title:SEÑOR MI DIOS}
 
-
-[Dm]SEÑOR MI DIOS
-DIGNO TU [Bb]ERES
-DE SU[C]BLIME ADORA[Dm]CIÓN 
-
-[Dm]A TI MIS LABIOS 
-NO CESEN [Bb]NUNCA
-[C]JAMAS DE PROCLA[Dm]MAR
-
-
-{start_chorus}
-TÚ ERES [F]EXCELSO
-DIOS PODE[C]ROSO
-REY DE [Bb]REYES Y SE[Gm]ÑOR DE SE[A]ÑORES
-TU NOMBRE ES [F]GRANDE
-AQUÍ EN LA [C]TIERRA
-EN EL [Bb]CIELO Y [Gm]TAMBIÉN EL
-[A]UNIVERSO
-{end_chorus}
-
-
-[Dm]TODAS LAS LENGUAS
-Y LAS [Bb]NACIONES CON[C]FIESEN AL [Dm]SEÑOR
-
-[Dm]TAMBIÉN LA LUNA
-Y LAS [Bb]ESTRELLAS Y EL [C]SOL
-TE ALABA[Dm]RAN
-
-";
-            var ch=Chord.parseChord(s);
+//            string s= @"{title:SEÑOR MI DIOS}
+//
+//
+//[Dm]SEÑOR MI DIOS
+//DIGNO TU [Bb]ERES
+//DE SU[C]BLIME ADORA[Dm]CIÓN 
+//
+//[Dm]A TI MIS LABIOS 
+//NO CESEN [Bb]NUNCA
+//[C]JAMAS DE PROCLA[Dm]MAR
+//
+//
+//{start_chorus}
+//TÚ ERES [F]EXCELSO
+//DIOS PODE[C]ROSO
+//REY DE [Bb]REYES Y SE[Gm]ÑOR DE SE[A]ÑORES
+//TU NOMBRE ES [F]GRANDE
+//AQUÍ EN LA [C]TIERRA
+//EN EL [Bb]CIELO Y [Gm]TAMBIÉN EL
+//[A]UNIVERSO
+//{end_chorus}
+//
+//
+//[Dm]TODAS LAS LENGUAS
+//Y LAS [Bb]NACIONES CON[C]FIESEN AL [Dm]SEÑOR
+//
+//[Dm]TAMBIÉN LA LUNA
+//Y LAS [Bb]ESTRELLAS Y EL [C]SOL
+//TE ALABA[Dm]RAN
+//
+//";
+//            var ch=Chord.parseChord(s);
             Console.ReadLine();
 
         }
@@ -642,7 +643,6 @@ TE ALABA[Dm]RAN
         {
             // TODO: Complete member initialization
             Letra = "";
-            Acordes = "";
             Nombre = "";
         }
         [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
@@ -650,8 +650,7 @@ TE ALABA[Dm]RAN
         public string   Nombre    { get; set; }
         public string   Tipo      { get; set; }
         public DateTime UltimaVez { get; set; }
-        public string Letra { get; set; }
-        public string Acordes { get; set; }
+        public string Letra { get; set; }       
         
     }
 

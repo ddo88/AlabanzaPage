@@ -1,0 +1,40 @@
+﻿@model AlabanzaPage.Models.Cancion
+
+@{
+    ViewBag.Title = "Acordes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>VerAcordes</h2>
+
+<fieldset>
+    <legend>Cancion</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nombre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tipo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tipo)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Letra)
+    </div>
+    <div class="display-field">
+        <div id="letra">
+            @Html.Raw(Model.Letra)
+        </div>
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

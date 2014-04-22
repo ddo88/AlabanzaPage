@@ -8,7 +8,7 @@ var cancionesListResult = function (result) {
         n.tipo(a[i].Tipo);
         n.ultimaVez(a[i].UltimaVez);
         n.letra(a[i].Letra);
-        n.acordes(a[i].Acordes);
+        //n.acordes(a[i].Acordes);
         n.id(a[i].Id);
         list.push(n);
     }
@@ -23,7 +23,7 @@ var cancionResult = function (result) {
         n.tipo(a.Tipo);
         n.ultimaVez(a.UltimaVez);
         n.letra(a.Letra);
-        n.acordes(a.Acordes);
+        //n.acordes(a.Acordes);
         n.id(a.Id);
         return n;    
 };
@@ -36,7 +36,7 @@ var listaResult = function (result) {
     n.tipo(a.Tipo);
     n.ultimaVez(a.UltimaVez);
     n.letra(a.Letra);
-    n.acordes(a.Acordes);
+    //n.acordes(a.Acordes);
     n.id(a.Id);
     return n;
 };

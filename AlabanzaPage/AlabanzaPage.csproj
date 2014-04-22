@@ -153,6 +153,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Tools\Chord.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -743,9 +744,12 @@
     <Content Include="Views\Cancion\Create.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cancion\Edit.cshtml" />
-    <Content Include="Views\Cancion\Index.cshtml" />
+    <Content Include="Views\Cancion\Index2.cshtml" />
     <Content Include="Views\Lista\Index.cshtml" />
     <Content Include="Views\Lista\Create.cshtml" />
+    <Content Include="Views\Cancion\Index.cshtml" />
+    <Content Include="Views\Cancion\VerLetra.cshtml" />
+    <Content Include="Views\Cancion\VerAcordes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

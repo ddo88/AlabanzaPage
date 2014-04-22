@@ -12,6 +12,10 @@ zg.cancionVM = function () {
             //    alert(data);
             //})
         },
+        verLetra = function (elm)
+        {
+            var i = 0;
+        },
         saveEdited = function (elm) {
             send('/Cancion/Edit/', 'Post', ko.toJSON(elm.cancion), function (data) {
                 window.location.replace('/Cancion/Index');
@@ -33,7 +37,8 @@ zg.cancionVM = function () {
         cancion: cancion,
         listado: listado,
         load:    load,
-        edit:    edit,
+        edit: edit,
+        verLetra:verLetra,
         save: saveCancion,
         saveEdited: saveEdited
     };
