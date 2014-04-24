@@ -59,11 +59,15 @@
                     <li>
                         @Html.ActionLink("Usuarios", "Index","Usuario")
                     </li>
+                    
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                @*<ul class="nav navbar-nav navbar-brand nav">
                     <li><a href="http://builtwithbootstrap.com/" target="_blank">Iglesia Cristiana Pagiel</a></li>
+                </ul>*@
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.Partial("_LogOnPartial")</li>                    
                 </ul>
-            </div>
+</div>
         </div>
     </div>
 
@@ -112,7 +116,7 @@
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    @RenderBody()
+                    @RenderBody()                    
                 </div>
             </div>
         </div>

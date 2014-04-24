@@ -110,6 +110,7 @@
     <Compile Include="Controllers\ExampleLayoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailCls.cs" />
+    <Compile Include="Controllers\PB.cs" />
     <Compile Include="Controllers\ValidateSecurity.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

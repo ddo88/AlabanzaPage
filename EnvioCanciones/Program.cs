@@ -22,6 +22,10 @@ namespace EnvioCanciones
             MongoCollection<Cancion> _evento = db.GetCollection<Cancion>("canciones");
             _evento.InsertBatch(GetList());
 
+            List<Cancion> q = GetList();
+
+            var qq = q.Where(x => x.Letra.Contains("Cristo")).Count();
+
             //MongoCollection<Persona> _evento = db.GetCollection<Persona>("Personas");
             
             //Persona p= new Persona();
@@ -373,20 +377,7 @@ namespace EnvioCanciones
             return c;
         }
 
-        //private static string GetMD5(string value)
-        //{
-        //    MD5 md = MD5.Create();
-        //    StringBuilder sBuilder = new StringBuilder();
-        //    byte[] data = md.ComputeHash(value.GetBytesFromASCII());
-        //    // Loop through each byte of the hashed data 
-        //    // and format each one as a hexadecimal string.
-        //    for (int i = 0; i < data.Length; i++)
-        //    {
-        //        sBuilder.Append(data[i].ToString("x2"));
-        //    }
-        //    return sBuilder.ToString();
-
-        //}
+        
     }
     public enum Item
     { 

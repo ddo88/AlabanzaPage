@@ -17,8 +17,13 @@ namespace AlabanzaPage.Controllers
     public class CancionController : Controller
     {
 
-        public readonly Context context = new Context(); 
-        
+        public readonly Context context = new Context();
+
+        public ActionResult Index()
+        {
+            var listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll();
+            return View(listado);
+        }
         //
         // GET: /Canciones/
         public ActionResult Index2()
@@ -33,13 +38,6 @@ namespace AlabanzaPage.Controllers
             return Json(listado, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Index()
-        {
-            var    listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll();
-            return View(listado);
-        }
-
-
         public ActionResult VerLetra(string id)
         {
             var query = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Find(Query.EQ("_id",id));
@@ -47,6 +45,7 @@ namespace AlabanzaPage.Controllers
             c.Letra=Chord.GetLyrics(c.Letra);
             return View(c);
         }
+
         public ActionResult VerAcordes(string id)
         {
             var query = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Find(Query.EQ("_id", id));

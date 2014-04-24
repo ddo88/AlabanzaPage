@@ -23,9 +23,7 @@ namespace AlabanzaPage.Models
         public string   Letra     { get; set; }
         //public string   Acordes   { get; set; }
         public DateTime UltimaVez { get; set; }
-    }
-
-    
+    }   
 
     
 }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvioCanciones", "EnvioCanc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlabanzaPage", "AlabanzaPage\AlabanzaPage.csproj", "{B8618684-3FA0-4965-82B2-9ABFDDC645E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApplication3", "MvcApplication3\MvcApplication3.csproj", "{AF936322-DDC7-436E-96FB-DC98821A3DD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,16 @@ Global
 		{B8618684-3FA0-4965-82B2-9ABFDDC645E8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B8618684-3FA0-4965-82B2-9ABFDDC645E8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B8618684-3FA0-4965-82B2-9ABFDDC645E8}.Release|x86.ActiveCfg = Release|Any CPU
+		{AF936322-DDC7-436E-96FB-DC98821A3DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF936322-DDC7-436E-96FB-DC98821A3DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF936322-DDC7-436E-96FB-DC98821A3DD3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AF936322-DDC7-436E-96FB-DC98821A3DD3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AF936322-DDC7-436E-96FB-DC98821A3DD3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AF936322-DDC7-436E-96FB-DC98821A3DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF936322-DDC7-436E-96FB-DC98821A3DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF936322-DDC7-436E-96FB-DC98821A3DD3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AF936322-DDC7-436E-96FB-DC98821A3DD3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AF936322-DDC7-436E-96FB-DC98821A3DD3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

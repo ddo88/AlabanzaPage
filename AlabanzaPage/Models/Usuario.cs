@@ -14,5 +14,8 @@ namespace AlabanzaPage.Models
         public string User { get; set; }
         public string Pass { get; set; }
         public List<string> Roles { get; set; }
+
+        //string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey
     }
+
 }
