@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AlabanzaPage.App_Start;
+using AlabanzaPage.Models;
+using AlabanzaPage.Properties;
+using MongoDB.Driver.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,10 +14,12 @@ namespace AlabanzaPage.Controllers
     {
         //
         // GET: /Usuario/
+        public readonly Context context = new Context();
 
         public ActionResult Index()
         {
-            return View();
+            var listado = context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).FindAll();
+            return View(listado);
         }
 
         //
@@ -29,6 +35,7 @@ namespace AlabanzaPage.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.ListRoles = getRoles();
             return View();
         }
 
@@ -36,12 +43,13 @@ namespace AlabanzaPage.Controllers
         // POST: /Usuario/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Usuario collection)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).Save(collection);
+                context.RemoveCache(Settings.Default.UsuariosCollection);
                 return RedirectToAction("Index");
             }
             catch
@@ -53,21 +61,39 @@ namespace AlabanzaPage.Controllers
         //
         // GET: /Usuario/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+
+            ViewBag.ListRoles = getRoles();
+            var user=context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).Find(Query.EQ("_id",id));
+            return View(user.First());
+        }
+
+        private List<SelectListItem> getRoles()
+        { 
+            List<SelectListItem> list= new List<SelectListItem>();
+            foreach(var a in Settings.Default.Roles)
+            {
+                SelectListItem sli= new SelectListItem();
+                sli.Text  = a;
+                sli.Value = a;
+                list.Add(sli);
+            }
+        return list;
         }
 
         //
         // POST: /Usuario/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, Usuario collection)
         {
             try
             {
                 // TODO: Add update logic here
 
+                context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).Update(Query.EQ("_id", id), Update.Set("Role", collection.Role).Set("User", collection.User));
+                context.RemoveCache(Settings.Default.UsuariosCollection);
                 return RedirectToAction("Index");
             }
             catch

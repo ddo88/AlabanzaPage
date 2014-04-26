@@ -13,7 +13,8 @@ namespace AlabanzaPage.Models
         public string Id { get; set; }
         public string User { get; set; }
         public string Pass { get; set; }
-        public List<string> Roles { get; set; }
+        //public List<string> Roles { get; set; }
+        public string Role { get; set; }
 
         //string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey
     }

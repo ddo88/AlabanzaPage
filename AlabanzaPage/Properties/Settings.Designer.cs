@@ -67,5 +67,19 @@ namespace AlabanzaPage.Properties {
                 return ((string)(this["Db"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>Root</string>
+  <string>Administrador</string>
+  <string>User</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Roles {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Roles"]));
+            }
+        }
     }
 }

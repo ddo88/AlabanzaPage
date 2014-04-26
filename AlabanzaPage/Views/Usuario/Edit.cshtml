@@ -1,0 +1,37 @@
+﻿@model AlabanzaPage.Models.Usuario
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Edit</h2>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Usuario</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            Nombre
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User)
+            @Html.ValidationMessageFor(model => model.User)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Role)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Role",(IEnumerable<SelectListItem>)ViewBag.ListRoles)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

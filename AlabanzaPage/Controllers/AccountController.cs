@@ -46,6 +46,7 @@ namespace AlabanzaPage.Controllers
                     Usuario u=mb.GetUser(model.UserName, false);
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(0, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(10), true, model.UserName);
                     Session["UniqueUserId"]          = model.UserName;
+                    Session["Role"]                  = u.Role;
                     string encTicket                 = FormsAuthentication.Encrypt(ticket);
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket) { Expires = DateTime.Now.AddMinutes(10) });
                     FormsAuthentication.SetAuthCookie(u.User, model.RememberMe);
