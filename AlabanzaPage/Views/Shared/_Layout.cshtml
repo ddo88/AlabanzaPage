@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using AlabanzaPage.Tools
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -15,7 +16,7 @@
     @Scripts.Render("~/bundles/jquery")
 
     <script type='text/javascript' src="~/Scripts/moment.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
     <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script type='text/javascript' src="~/Scripts/knockout-2.2.0.js"></script>
     <script type='text/javascript' src="http://imsky.github.io/holder/holder.js"></script>
@@ -42,7 +43,12 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Canciones<span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="download">
                             <li>@Html.ActionLink("Listado Completo", "Index", "Cancion")</li>
-                            <li>@Html.ActionLink("Añadir", "Create", "Cancion")</li>
+                            
+                            @*@Html.ValidatedElement(Request,"<li>"+@Html.ActionLink("Añadir", "Create", "Cancion").ToHtmlString()+"</li>")*@
+                            @Html.ValidatedListActionList(Request, "Añadir", "Create", "Cancion")
+                            @* Request,"<li>"+@Html.ActionLink("Añadir", "Create", "Cancion")+"</li>"*@
+                            
+                            
                             @*<li>@Html.ActionLink("Letra", "Letra", "Cancion")</li>
                             <li>@Html.ActionLink("Acordes", "Acordes", "Cancion")</li>
                             <li>@Html.ActionLink("Videos", "Videos", "Cancion")</li>*@
@@ -52,9 +58,13 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Lista<span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="download">
                             <li>@Html.ActionLink("Lista Activa", "Index", "Lista")</li>
-                            <li>@Html.ActionLink("Nueva", "Create", "Lista")</li>
+                            @Html.ValidatedListActionList(Request, "Nueva", "Create", "Lista")
+                            @*@Html.ValidatedElement(Request, "<li>" + @Html.ActionLink("Nueva", "Create", "Lista").ToHtmlString() + "</li>")*@
+                            @*<li>@Html.ActionLink("Nueva", "Create", "Lista")</li>*@
                             <li>@Html.ActionLink("Sugerencias", "Sugerencias", "Lista")</li>
-                            <li>@Html.ActionLink("Editar Lista", "Edit", "Lista")</li>
+                            @Html.ValidatedListActionList(Request, "Editar Lista", "Edit", "Lista")
+                            @*@Html.ValidatedElement(Request, "<li>" + @Html.ActionLink("Editar Lista", "Edit", "Lista").ToHtmlString() + "</li>")*@
+                            @*<li>@Html.ActionLink("Editar Lista", "Edit", "Lista")</li>*@
                         </ul>
                     </li>
                     <li>
@@ -87,7 +97,7 @@
         <div class="row">
             <div id="map">
                 <div class="col-lg-3">
-                    <div id="carousel-instruments" class="carousel slide" data-ride="carousel">
+                    <div id="carousel-instruments" class="carousel slide visible-lg" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
                             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>

@@ -49,6 +49,7 @@ namespace AlabanzaPage.Controllers
                     Session["Role"]                  = u.Role;
                     string encTicket                 = FormsAuthentication.Encrypt(ticket);
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket) { Expires = DateTime.Now.AddMinutes(10) });
+                    Response.Cookies.Add(new HttpCookie("Role", u.Role) { Expires = DateTime.Now.AddMinutes(10),HttpOnly=true });
                     FormsAuthentication.SetAuthCookie(u.User, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
@@ -60,6 +61,7 @@ namespace AlabanzaPage.Controllers
                     }
                 }
                 else
+
                 {
                     ModelState.AddModelError("", "El usuario o la contraseña es incorrecta.");
                 }

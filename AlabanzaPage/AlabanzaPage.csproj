@@ -157,6 +157,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Tools\Chord.cs" />
+    <Compile Include="Tools\ExtensionMethods.cs" />
+    <Compile Include="Tools\ValidateSecurity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
