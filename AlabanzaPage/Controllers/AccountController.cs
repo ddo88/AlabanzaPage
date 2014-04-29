@@ -4,13 +4,11 @@ using AlabanzaPage.Properties;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using AlabanzaPage.Tools;
 
 namespace AlabanzaPage.Controllers
 {
@@ -44,13 +42,14 @@ namespace AlabanzaPage.Controllers
                     //    List<string> roles = HttpContext.Application["Roles"] as List<string>;
                     //}
                     Usuario u=mb.GetUser(model.UserName, false);
-                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(0, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(10), true, model.UserName);
-                    Session["UniqueUserId"]          = model.UserName;
-                    Session["Role"]                  = u.Role;
-                    string encTicket                 = FormsAuthentication.Encrypt(ticket);
-                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket) { Expires = DateTime.Now.AddMinutes(10) });
-                    Response.Cookies.Add(new HttpCookie("Role", u.Role) { Expires = DateTime.Now.AddMinutes(10),HttpOnly=true });
-                    FormsAuthentication.SetAuthCookie(u.User, model.RememberMe);
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(0, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(10), true, u.Role.GetMD5());
+                    //Session["UniqueUserId"]          = model.UserName;
+                    //Session["Role"]                  = u.Role;
+                    //string encTicket                 = FormsAuthentication.Encrypt(ticket);
+                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName,FormsAuthentication.Encrypt( ticket)) { Expires = DateTime.Now.AddMinutes(10) });
+                    //Response.Cookies.Add(new HttpCookie("Role", u.Role.GetMD5()) { Expires = DateTime.Now.AddMinutes(10),HttpOnly=true });
+                    //FormsAuthentication.SetAuthCookie(u.User, model.RememberMe);
+                    
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
                         return Redirect(returnUrl);
@@ -75,9 +74,11 @@ namespace AlabanzaPage.Controllers
 
         public ActionResult LogOff()
         {
-            HttpContext.Application["Roles"] = null;
-            Session["UniqueUserId"] = null;
+            //HttpContext.Application["Roles"] = null;
+            //Session["UniqueUserId"] = null;
+            //Session["Role"] = null;
             FormsAuthentication.SignOut();
+            Response.Cookies.Remove("Role");
             return RedirectToAction("Index", "Home");
         }
 
@@ -229,9 +230,9 @@ namespace AlabanzaPage.Controllers
             {
                 Context context = new Context();
                 Usuario u=context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).Find(Query<Usuario>.EQ(x => x.Id, username)).First();
-                if(u.Pass==GetMD5(oldPassword))
+                if (u.Pass == oldPassword.GetMD5())
                 {
-                    u.Pass = GetMD5(newPassword);
+                    u.Pass = newPassword.GetMD5();
                     WriteConcernResult result = context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).Update(Query.EQ("_id", username), Update.Replace(u), UpdateFlags.Upsert);
                     context.RemoveCache(Settings.Default.UsuariosCollection);
                     if (result.Ok)
@@ -244,7 +245,7 @@ namespace AlabanzaPage.Controllers
             {
                 try
                 {
-                    u.Pass = GetMD5(u.Pass);
+                    u.Pass = u.Pass.GetMD5();
                     WriteConcernResult result = context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).Save(u);
                     context.RemoveCache(Settings.Default.UsuariosCollection);
                     if (result.Ok){
@@ -277,28 +278,13 @@ namespace AlabanzaPage.Controllers
             public bool ValidateUser(string username, string password)
             {
                 Usuario user= context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).Find(Query<Usuario>.EQ(x => x.Id, username)).First();
-                if (user.Pass == GetMD5(password))
+                if (user.Pass == password.GetMD5())
                     return true;
                 else
                     return false;
             }
 
-            private static string GetMD5(string value)
-            {
-
-                value = value + "salt";
-                MD5 md = MD5.Create();
-                StringBuilder sBuilder = new StringBuilder();
-                byte[] data = md.ComputeHash(System.Text.Encoding.ASCII.GetBytes(value));
-                // Loop through each byte of the hashed data 
-                // and format each one as a hexadecimal string.
-                for (int i = 0; i < data.Length; i++)
-                {
-                    sBuilder.Append(data[i].ToString("x2"));
-                }
-                return sBuilder.ToString();
-
-            }
+            
     }
     
 }

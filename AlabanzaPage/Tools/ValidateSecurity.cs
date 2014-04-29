@@ -3,19 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace AlabanzaPage.Tools
 {
     public class ValidateSecurity:ActionMethodSelectorAttribute
     {
-        public override bool IsValidForRequest(ControllerContext controllerContext, System.Reflection.MethodInfo methodInfo)
+        public override bool IsValidForRequest(ControllerContext context, System.Reflection.MethodInfo methodInfo)
         {
+
+            HttpCookie authCookie = context.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                string roles = authTicket.UserData;
+            }
             string Accion = methodInfo.Name;
             string Modulo = methodInfo.ReflectedType.Name.Replace("Controller", "");
             bool sw = false;
-            if (controllerContext.HttpContext.Session["UniqueUserId"] != null && controllerContext.HttpContext.Session["Role"] != null) 
+            if (context.HttpContext.Session["UniqueUserId"] != null && context.HttpContext.Session["Role"] != null) 
                 {
-                    string role = controllerContext.HttpContext.Session["Role"] as string;
+                    string role = context.HttpContext.Session["Role"] as string;
                     sw = true;
                 }
             return sw;

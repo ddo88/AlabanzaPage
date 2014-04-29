@@ -19,7 +19,7 @@ namespace AlabanzaPage.Controllers
 
         public readonly Context context = new Context();
 
-        
+        [ValidateSecurity]
         public ActionResult Index()
         {
             var listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll();
