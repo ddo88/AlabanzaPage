@@ -34,10 +34,10 @@ namespace EnvioCanciones
             //p.Roles= new List<string>(){"root"};
             //_evento.InsertBatch(GetList());
 
-            //foreach (var a in GetList())
-            //{
-            //    _evento.Insert(a);
-            //}
+            foreach (var a in GetList())
+            {
+                _evento.Insert(a);
+            }
 
 //            string s= @"{title:SEÑOR MI DIOS}
 //
