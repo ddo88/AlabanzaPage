@@ -24,7 +24,8 @@ namespace AlabanzaPage.Tools
             if (context.HttpContext.Session["UniqueUserId"] != null && context.HttpContext.Session["Role"] != null) 
                 {
                     string role = context.HttpContext.Session["Role"] as string;
-                    sw = true;
+                    if(role=="Administrador" && role=="Root")
+                        sw = true;
                 }
             return sw;
         }

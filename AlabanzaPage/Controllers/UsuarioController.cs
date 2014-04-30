@@ -60,10 +60,8 @@ namespace AlabanzaPage.Controllers
 
         //
         // GET: /Usuario/Edit/5
-
         public ActionResult Edit(string id)
         {
-
             ViewBag.ListRoles = getRoles();
             var user=context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).Find(Query.EQ("_id",id));
             return View(user.First());

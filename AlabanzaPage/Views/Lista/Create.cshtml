@@ -44,27 +44,39 @@
     Ver Listado Canciones
 </button>
 
+<form>
+    <!-- ko with: lista-->
 
-<!-- ko with: lista-->
-<table class="table table-bordered table-striped table-hover">
-    <thead>
-        <tr><td>Nombre</td><td>Tipo</td><td>Orden</td></tr>
-    </thead>
-    <tbody>
-    <!-- ko foreach: canciones-->
-    <tr>
-        <td><span data-bind="text: nombre"></span></td>
-        <td><span data-bind="text: tipo"></span></td>                
-        <td><span data-bind="click: $root.up" class="ui-icon-arrow-1-n" >Up</span></td>                
-        <td><span data-bind="click: $root.down" class="ui-icon-arrow-1-s">Down</span></td>                
-    </tr>
-    <!-- /ko-->
-    </tbody>
-</table>
+    <fieldset>
+        <div class="form-group">
+            <label id="letraLabel" class="col-sm-2 control-label" data-bind="value: fecha">letra:</label>
+        </div>
+        <div class="form-group">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr><td>Nombre</td><td>Tipo</td><td>Orden</td></tr>
+                </thead>
+                <tbody>
+                    <!-- ko foreach: canciones-->
+                    <tr>
+                        <td><span data-bind="text: nombre"></span></td>
+                        <td><span data-bind="text: tipo"></span></td>
+                        <td><span data-bind="click: $root.up" class="ui-icon-arrow-1-n">Up</span></td>
+                        <td><span data-bind="click: $root.down" class="ui-icon-arrow-1-s">Down</span></td>
+                    </tr>
+                    <!-- /ko-->
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <button type="submit" data-bind="click: save">Guardar</button>
 <!--/ko-->
+</form>
 
 <script>
     $(document).ready(function () {
+
+        //$("letraLabel").datepicker();
         var model = new zg.listaVM();
             model.loadCanciones();
             ko.applyBindings(model);

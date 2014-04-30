@@ -36,20 +36,10 @@ namespace AlabanzaPage.Controllers
 
                 if (mb.ValidateUser(model.UserName, model.Password))
                 {
-                    //if (HttpContext.Application["Roles"] == null)
-                    //{
-                    //    //HttpContext.Application["Roles"] = p.Roles;
-                    //    List<string> roles = HttpContext.Application["Roles"] as List<string>;
-                    //}
                     Usuario u=mb.GetUser(model.UserName, false);
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(0, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(10), true, u.Role.GetMD5());
-                    //Session["UniqueUserId"]          = model.UserName;
-                    //Session["Role"]                  = u.Role;
-                    //string encTicket                 = FormsAuthentication.Encrypt(ticket);
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName,FormsAuthentication.Encrypt( ticket)) { Expires = DateTime.Now.AddMinutes(10) });
-                    //Response.Cookies.Add(new HttpCookie("Role", u.Role.GetMD5()) { Expires = DateTime.Now.AddMinutes(10),HttpOnly=true });
-                    //FormsAuthentication.SetAuthCookie(u.User, model.RememberMe);
-                    
+
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
                         return Redirect(returnUrl);
@@ -60,7 +50,6 @@ namespace AlabanzaPage.Controllers
                     }
                 }
                 else
-
                 {
                     ModelState.AddModelError("", "El usuario o la contraseña es incorrecta.");
                 }

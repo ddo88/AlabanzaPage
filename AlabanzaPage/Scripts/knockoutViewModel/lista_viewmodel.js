@@ -5,15 +5,14 @@ zg.listaVM = function () {
     listado = ko.observableArray(),
     loadLista = function () {
         send('/Lista/Ultima', 'Get', undefined, function (data) {
-            if (data === "")
-            { }
-            else
-            {
+            if (data === "") {
+            }
+            else {
                 //codigo cuando recibo un lista de verdad
                 //listado.removeAll();
                 //listado(listaResult(data));
                 //listado.valueHasMutated();
-            }            
+            }
         });
     },
     loadCanciones = function () {
@@ -23,15 +22,12 @@ zg.listaVM = function () {
             listado.valueHasMutated();
         });
     },
-    select = function (elm)
-    {
-        if (elm.selected() === false)
-        {
+    select = function (elm) {
+        if (elm.selected() === false) {
             elm.selected(true);
             lista.canciones.push(elm);
         }
-        else
-        {
+        else {
             elm.selected(false);
             lista.canciones.remove(elm);
         }
@@ -42,8 +38,12 @@ zg.listaVM = function () {
     },
     down = function (elm) {
         lista.canciones.move(lista.canciones.indexOf(elm), 1);
+    },
+    save= function (elm) {
+        send('/Lista/Save/', 'Post', ko.toJSON(elm), function (data) {
+            window.location.replace('/Lista/Index');
+        })
     };
-
     return {
         lista:         lista,
         listado:       listado,
@@ -51,7 +51,8 @@ zg.listaVM = function () {
         loadCanciones: loadCanciones,
         select:        select,
         up:            up,
-        down:          down
+        down:          down,
+        save:          save
     };
 };
 

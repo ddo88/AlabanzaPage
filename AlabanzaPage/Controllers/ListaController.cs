@@ -2,6 +2,7 @@
 using AlabanzaPage.Models;
 using AlabanzaPage.Properties;
 using MongoDB.Driver.Builders;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace AlabanzaPage.Controllers
 
         public ActionResult Ultima()
         {
-            var a = context.GetCollection<Lista>(Settings.Default.ListaCollection).FindAll().SetSortOrder(SortBy.Descending("_id"));
+            var a = context.GetCollection<Lista>(Settings.Default.ListaCollection).FindAll().SetSortOrder(SortBy.Descending("Fecha"));
             if (a.Count() > 0)
             {
                 return Json(a.First(),JsonRequestBehavior.AllowGet);                
@@ -96,6 +97,21 @@ namespace AlabanzaPage.Controllers
             {
                 // TODO: Add delete logic here
 
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult Save()//FormCollection collection
+        {
+            try
+            {
+                context.GetCollection<Lista>(Settings.Default.CancionesCollection).Insert(JsonConvert.DeserializeObject<Lista>(Request.Form[0]));
                 return RedirectToAction("Index");
             }
             catch
