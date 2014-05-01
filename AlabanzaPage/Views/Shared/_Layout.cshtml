@@ -43,15 +43,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Canciones<span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="download">
                             <li>@Html.ActionLink("Listado Completo", "Index", "Cancion")</li>
-                            
-                            @*@Html.ValidatedElement(Request,"<li>"+@Html.ActionLink("Añadir", "Create", "Cancion").ToHtmlString()+"</li>")*@
                             @Html.ValidatedListActionList(Request, "Añadir", "Create", "Cancion")
-                            @* Request,"<li>"+@Html.ActionLink("Añadir", "Create", "Cancion")+"</li>"*@
-                            
-                            
-                            @*<li>@Html.ActionLink("Letra", "Letra", "Cancion")</li>
-                            <li>@Html.ActionLink("Acordes", "Acordes", "Cancion")</li>
-                            <li>@Html.ActionLink("Videos", "Videos", "Cancion")</li>*@
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -59,12 +51,8 @@
                         <ul class="dropdown-menu" aria-labelledby="download">
                             <li>@Html.ActionLink("Lista Activa", "Index", "Lista")</li>
                             @Html.ValidatedListActionList(Request, "Nueva", "Create", "Lista")
-                            @*@Html.ValidatedElement(Request, "<li>" + @Html.ActionLink("Nueva", "Create", "Lista").ToHtmlString() + "</li>")*@
-                            @*<li>@Html.ActionLink("Nueva", "Create", "Lista")</li>*@
                             <li>@Html.ActionLink("Sugerencias", "Sugerencias", "Lista")</li>
                             @Html.ValidatedListActionList(Request, "Editar Lista", "Edit", "Lista")
-                            @*@Html.ValidatedElement(Request, "<li>" + @Html.ActionLink("Editar Lista", "Edit", "Lista").ToHtmlString() + "</li>")*@
-                            @*<li>@Html.ActionLink("Editar Lista", "Edit", "Lista")</li>*@
                         </ul>
                     </li>
                     <li>

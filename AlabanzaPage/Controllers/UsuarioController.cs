@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AlabanzaPage.Tools;
+
 
 namespace AlabanzaPage.Controllers
 {
@@ -48,6 +50,7 @@ namespace AlabanzaPage.Controllers
             try
             {
                 // TODO: Add insert logic here
+                collection.Pass = collection.Pass.GetMD5();
                 context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).Save(collection);
                 context.RemoveCache(Settings.Default.UsuariosCollection);
                 return RedirectToAction("Index");

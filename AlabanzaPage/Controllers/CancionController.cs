@@ -19,7 +19,6 @@ namespace AlabanzaPage.Controllers
 
         public readonly Context context = new Context();
 
-        [ValidateSecurity]
         public ActionResult Index()
         {
             var listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll();
@@ -86,8 +85,6 @@ namespace AlabanzaPage.Controllers
         [ValidateSecurity]
         public ActionResult Edit(string id)
         {
-            //var q = JsonConvert.DeserializeObject<Cancion>(Request.Form[0]);
-            //context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Update(Query.EQ("_id", id), Update.Replace(JsonConvert.DeserializeObject<Cancion>(Request.Form[0])), UpdateFlags.Upsert)
             var q = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Find(Query.EQ("_id", id)).First();
             return View(q);
         }
