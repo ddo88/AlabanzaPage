@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista Actual</h2>
+<!-- ko with: lista-->
+    <div class="form-group">
+        <label for="final" class="col-sm-2 control-label">Fecha:</label>
+        <input id="final" type="datetime" data-bind="value: fecha" />
+    </div>
+
+<div class="row">
+    
+    <div class="col-lg-6">
+        <!-- Canciones-->
+        <table id="list" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <td>Cancion</td>
+                    <td>Tipo</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: canciones -->
+                <tr data-bind="click: $root.selectCancion,css: {success: selected}">
+                    <td><span data-bind="text: nombre"></span></td>
+                    <td><span data-bind="text: tipo"></span></td>
+                </tr>
+                <!-- /ko-->
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <!-- Sugerencias-->
+        <!-- ko ifnot:final -->
+        <table id="list" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <td>Cancion</td>
+                    <td>Tipo</td>                    
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: sugerencias -->
+                
+                <tr data-bind="click: $root.selectSugerencia,css: {warning: selected}">
+                    <td><span data-bind="text: nombre"></span></td>
+                    <td><span data-bind="text: tipo"></span></td>
+                </tr>
+                <!-- /ko-->
+            </tbody>
+        </table>
+        <!-- /ko -->
+    </div>
+    
+</div>
+<button type="button" class="btn btn-info btn-xs navbar-right" data-bind="click: swap"> Cambiar</button>
+<!-- /ko -->
+@if (Request.IsAuthenticated)
+{
+    <div class="form-group">
+        <label for="final" class="col-sm-2 control-label">Final:</label>
+        <input id="final" type="checkbox" data-bind="checked: lista.final" />
+    </div>
+    
+        <button type="submit" class="btn btn-primary btn-xs" data-bind="click: save">Guardar</button>
+}
+<br />
+<script>
+    $(document).ready(function () {
+        var model = new zg.listaVM();
+        model.loadLista();
+        ko.applyBindings(model);
+    });
+</script>
+<script src="~/Scripts/KnockoutModel/lista_model.js"></script>
+<script src="~/Scripts/knockoutViewModel/lista_viewmodel.js"></script>
+<script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>
+<script src="~/Scripts/KnockoutModel/cancion_model.js"></script>

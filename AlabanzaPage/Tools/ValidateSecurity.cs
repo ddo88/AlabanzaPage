@@ -13,20 +13,17 @@ namespace AlabanzaPage.Tools
         {
 
             HttpCookie authCookie = context.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
+            bool sw = false;
             if (authCookie != null)
             {
                 FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
                 string roles = authTicket.UserData;
-            }
-            string Accion = methodInfo.Name;
-            string Modulo = methodInfo.ReflectedType.Name.Replace("Controller", "");
-            bool sw = false;
-            if (context.HttpContext.Session["UniqueUserId"] != null && context.HttpContext.Session["Role"] != null) 
-                {
-                    string role = context.HttpContext.Session["Role"] as string;
-                    if(role=="Administrador" && role=="Root")
+                if (roles=="Root" || roles=="Administrator") 
                         sw = true;
-                }
+            }
+            //string Accion = methodInfo.Name;
+            //string Modulo = methodInfo.ReflectedType.Name.Replace("Controller", "");
+            //bool sw = false;
             return sw;
         }
     }

@@ -4,94 +4,105 @@
 }
 <h2>Lista Actual</h2>
 <!-- ko with: lista-->
+    <label data-bind="date: fecha"></label>
+    <!-- Canciones-->
+    <table id="list" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <td>Cancion</td>
+                <td>Tipo</td>
+                @*<td>Ultima Vez</td>*@
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ko foreach: canciones -->
+            <tr>
+                <td><span data-bind="text: nombre"></span></td>
+                <td><span data-bind="text: tipo"></span></td>
+                @*<td><span data-bind="date: ultimaVez"></span></td>*@
+            </tr>
+            <!-- /ko-->
+        </tbody>
+    </table>
 
-
-<label data-bind="date: fecha"></label>
-<table id="list" class="table table-bordered table-striped table-hover">
-    <thead>
-        <tr>
-            <td>Cancion</td>
-            <td>Tipo</td>
-            <td>Ultima Vez</td>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- ko foreach: canciones -->
-        <tr>
-            <td><span data-bind="text: nombre"></span></td>
-            <td><span data-bind="text: tipo"></span></td>
-            <td><span data-bind="date: ultimaVez"></span></td>
-        </tr>
-        <!-- /ko-->
-    </tbody>
-</table>
-
-<table id="list" class="table table-bordered table-striped table-hover">
-    <thead>
-        <tr>
-            <td>Cancion</td>
-            <td>Tipo</td>
-            <td>Ultima Vez</td>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- ko foreach: sugerencias -->
-        <tr>
-            <td><span data-bind="text: nombre"></span></td>
-            <td><span data-bind="text: tipo"></span></td>
-            <td><span data-bind="date: ultimaVez"></span></td>
-        </tr>
-        <!-- /ko-->
-    </tbody>
-</table>
-
+    <!-- Sugerencias-->
+    <!-- ko ifnot:final -->
+    <table id="list" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <td>Cancion</td>
+                <td>Tipo</td>
+                <td>Ultima Vez</td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ko foreach: sugerencias -->
+            <tr>
+                <td><span data-bind="text: nombre"></span></td>
+                <td><span data-bind="text: tipo"></span></td>
+                <td><span data-bind="date: ultimaVez"></span></td>
+            </tr>
+            <!-- /ko-->
+        </tbody>
+    </table>
+    <!-- /ko -->
 <!-- /ko -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Listado Canciones</h4>
-            </div>
-            <div class="modal-body">
-                <!--div id="listadoCanciones" style="display:none"-->
-                <div id="listadoCanciones">
-                    <table class="table table-bordered table-striped table-hover">
-                        <thead>
-                            <tr><td>Nombre</td><td>Tipo</td><td>Ultima Vez</td></tr>
-                        </thead>
-                        <tbody>
-                            <!-- ko foreach: listado-->
-                            <tr data-bind="click: $root.selectSuggest,css: {success: selected}">
-                                <td><span data-bind="text: nombre"></span></td>
-                                <td><span data-bind="text: tipo"></span></td>
-                                <td><span data-bind="date: ultimaVez"></span></td>
-                            </tr>
-                            <!-- /ko-->
-                        </tbody>
-                    </table>
+
+@if (Request.IsAuthenticated)
+{ 
+    <!-- ko ifnot: lista.final-->
+    <button type="submit" class="btn btn-primary btn-xs" data-bind="click: save">Guardar</button>
+    
+        <button class="btn btn-primary btn-xs" data-bind="click: edit">Editar Lista</button>
+        <!-- Listado de Canciones-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Listado Canciones</h4>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
-    Ver Listado Canciones
-</button>
-            <script>
-                $(document).ready(function () {
-                    var model = new zg.listaVM();
-                    model.loadLista();
-                    ko.applyBindings(model);
-                    model.loadCanciones();                    
-                });
-            </script>
+                <div class="modal-body">
+                    <!--div id="listadoCanciones" style="display:none"-->
+                    <div id="listadoCanciones">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr><td>Nombre</td><td>Tipo</td><td>Ultima Vez</td></tr>
+                            </thead>
+                            <tbody>
+                                <!-- ko foreach: listado-->
+                                <tr data-bind="click: $root.selectSuggest,css: {success: selected}">
+                                    <td><span data-bind="text: nombre"></span></td>
+                                    <td><span data-bind="text: tipo"></span></td>
+                                    <td><span data-bind="date: ultimaVez"></span></td>
+                                </tr>
+                                <!-- /ko-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+        <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+            Ver Listado Canciones
+        </button>
+<!-- /ko -->
+}
+<br />
 
-            <script src="~/Scripts/KnockoutModel/lista_model.js"></script>
-            <script src="~/Scripts/knockoutViewModel/lista_viewmodel.js"></script>
-            <script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>
-            <script src="~/Scripts/KnockoutModel/cancion_model.js"></script>
-
+<script>
+    $(document).ready(function () {
+        var model = new zg.listaVM();
+        model.loadLista();
+        ko.applyBindings(model);
+        model.loadCanciones();                    
+        });
+</script>
+<script src="~/Scripts/KnockoutModel/lista_model.js"></script>
+<script src="~/Scripts/knockoutViewModel/lista_viewmodel.js"></script>
+<script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>
+<script src="~/Scripts/KnockoutModel/cancion_model.js"></script>

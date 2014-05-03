@@ -1,8 +1,11 @@
 ﻿
 var cancionesListResult = function (result) {
+    
     var a = result;
     var list = ([]);
-    for (var i = 0; i < result.length; i++) {
+    if (result === null || result === undefined)
+        return list;
+    for (var i = 0; i < a.length; i++) {
         var n = new zg.cancion();
         n.nombre(a[i].Nombre);
         n.tipo(a[i].Tipo);

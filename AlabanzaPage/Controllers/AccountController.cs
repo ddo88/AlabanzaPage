@@ -37,7 +37,7 @@ namespace AlabanzaPage.Controllers
                 if (mb.ValidateUser(model.UserName, model.Password))
                 {
                     Usuario u=mb.GetUser(model.UserName, false);
-                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(0, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(10), true, u.Role.GetMD5());
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(0, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(10), true, u.Role);
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName,FormsAuthentication.Encrypt( ticket)) { Expires = DateTime.Now.AddMinutes(10) });
 
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))

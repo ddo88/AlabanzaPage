@@ -82,6 +82,7 @@ namespace AlabanzaPage.Controllers
         //
         // GET: /Canciones/Edit/5
         //[HttpPost]
+        [HttpGet]
         [ValidateSecurity]
         public ActionResult Edit(string id)
         {
