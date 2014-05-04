@@ -139,7 +139,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CancionController.cs" />
-    <Compile Include="Controllers\Default1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -734,6 +733,8 @@
     <Content Include="Scripts\moment-with-langs.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\underscore-min.js" />
+    <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -755,7 +756,6 @@
     <Content Include="Views\Cancion\Index.cshtml" />
     <Content Include="Views\Cancion\VerLetra.cshtml" />
     <Content Include="Views\Cancion\VerAcordes.cshtml" />
-    <Content Include="Views\Default1\Index.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
@@ -765,6 +765,7 @@
     <Content Include="Views\Usuario\Edit.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Lista\Edit.cshtml" />
+    <Content Include="Scripts\underscore-min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

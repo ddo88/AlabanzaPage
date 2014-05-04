@@ -28,6 +28,21 @@ namespace AlabanzaPage.Tools
             return new MvcHtmlString(String.Empty);
         }
 
+        public static MvcHtmlString ValidatedActionLink(this HtmlHelper helper, HttpRequestBase request, string text, string action, string controller)
+        {
+            if (request.GetRole() == "Root" || request.GetRole() == "Administrador")
+                return new MvcHtmlString(helper.ActionLink(text, action, controller).ToHtmlString());
+
+            return new MvcHtmlString(String.Empty);
+        }
+        public static MvcHtmlString ValidatedActionLink(this HtmlHelper helper, HttpRequestBase request, string text, string action, string controller,object htmlAttributes)
+        {
+            if (request.GetRole() == "Root" || request.GetRole() == "Administrador")
+                return new MvcHtmlString(helper.ActionLink(text, action, controller,htmlAttributes).ToHtmlString());
+
+            return new MvcHtmlString(String.Empty);
+        }
+
 
         public static string GetMD5(this string value)
         {

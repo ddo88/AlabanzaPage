@@ -5,12 +5,6 @@ zg.cancionVM = function () {
         listado = new ko.observableArray(),
         edit = function (elm) {
             window.location.replace('/Cancion/Edit/' + elm.id());
-            //$.post(, ko.toJSON(elm), function (data) {
-                
-            //});
-            //send('/Cancion/Edit/' + elm.id(), 'Post', ko.toJSON(elm), function (data) {
-            //    alert(data);
-            //})
         },
         verLetra = function (elm)
         {
@@ -34,12 +28,12 @@ zg.cancionVM = function () {
         };
 
     return {
-        cancion: cancion,
-        listado: listado,
-        load:    load,
-        edit: edit,
-        verLetra:verLetra,
-        save: saveCancion,
+        cancion:    cancion,
+        listado:    listado,
+        load:       load,
+        edit:       edit,
+        verLetra:   verLetra,
+        save:       saveCancion,
         saveEdited: saveEdited
     };
 };

@@ -1,47 +1,22 @@
-﻿
+﻿/// <reference path="underscore.js" />
+
 var cancionesListResult = function (result) {
-    
+
     var a = result;
     var list = ([]);
     if (result === null || result === undefined)
         return list;
-    for (var i = 0; i < a.length; i++) {
+    _.each(a, function (item) {
         var n = new zg.cancion();
-        n.nombre(a[i].Nombre);
-        n.tipo(a[i].Tipo);
-        n.ultimaVez(a[i].UltimaVez);
-        n.letra(a[i].Letra);
-        //n.acordes(a[i].Acordes);
-        n.id(a[i].Id);
+        n.nombre   (item.Nombre);
+        n.tipo     (item.Tipo);
+        n.ultimaVez(item.UltimaVez);
+        n.letra    (item.Letra);
+        n.id(item.Id);
+
         list.push(n);
-    }
+    });    
     return list;
-};
-
-var cancionResult = function (result) {
-    var a = result;
-    
-    var n = new zg.cancion();
-        n.nombre(a.Nombre);
-        n.tipo(a.Tipo);
-        n.ultimaVez(a.UltimaVez);
-        n.letra(a.Letra);
-        //n.acordes(a.Acordes);
-        n.id(a.Id);
-        return n;    
-};
-//este pa que es?, pendiente sino para borrar
-var listaResult = function (result) {
-    var a = result;
-
-    var n = new zg.cancion();
-    n.nombre(a.Nombre);
-    n.tipo(a.Tipo);
-    n.ultimaVez(a.UltimaVez);
-    n.letra(a.Letra);
-    //n.acordes(a.Acordes);
-    n.id(a.Id);
-    return n;
 };
 
 var send = function (url, type, data, callback) {
@@ -63,7 +38,6 @@ var send = function (url, type, data, callback) {
         });
     }
 };
-
 
 ko.observableArray.fn.move = function (index, delta) {
 

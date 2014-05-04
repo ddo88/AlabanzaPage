@@ -50,6 +50,9 @@
 
 @if (Request.IsAuthenticated)
 { 
+    <!-- ko if: lista.final-->
+    
+    <!-- /ko -->
     <!-- ko ifnot: lista.final-->
     <button type="submit" class="btn btn-primary btn-xs" data-bind="click: save">Guardar</button>
     
@@ -102,7 +105,3 @@
         model.loadCanciones();                    
         });
 </script>
-<script src="~/Scripts/KnockoutModel/lista_model.js"></script>
-<script src="~/Scripts/knockoutViewModel/lista_viewmodel.js"></script>
-<script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>
-<script src="~/Scripts/KnockoutModel/cancion_model.js"></script>

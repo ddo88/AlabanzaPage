@@ -146,11 +146,13 @@ namespace AlabanzaPage.Controllers
                 context.RemoveCache(Settings.Default.ListaCollection);
 
                 context.RemoveCache(Settings.Default.ListaCollection);
-                return RedirectToAction("Index");
+                return Json("{state:ok}", JsonRequestBehavior.AllowGet);
+                //return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return Json("{state:false}", JsonRequestBehavior.AllowGet);
+                //return View();
             }
         }
     }

@@ -1,11 +1,11 @@
 ﻿var zg = zg || {};
 
 zg.listaVM = function () {
-    cancionS = new zg.cancion(),
-    sugerenciaS = new zg.cancion(),
-    lista = new zg.lista(),
-    listado = ko.observableArray(),
-    loadLista = function () {
+    cancionS         = new zg.cancion(),
+    sugerenciaS      = new zg.cancion(),
+    lista            = new zg.lista(),
+    listado          = ko.observableArray(),
+    loadLista        = function () {
         send('/Lista/Ultima', 'Get', undefined, function (data) {
             if (data === "") {
             }
@@ -21,7 +21,7 @@ zg.listaVM = function () {
             }
         });
     },
-    loadCanciones = function () {
+    loadCanciones    = function () {
         send('/Cancion/Listado/', 'Get', undefined, function (data) {
             listado.removeAll();
             listado(cancionesListResult(data));
@@ -30,7 +30,7 @@ zg.listaVM = function () {
                 selectSong(lista.canciones());
         });
     },
-    selectSong = function (elm)
+    selectSong       = function (elm)
     {
         
         for (var i = 0; i < elm.length; i++)
@@ -42,7 +42,7 @@ zg.listaVM = function () {
         }
         listado.valueHasMutated();
     },
-    select = function (elm) {
+    select           = function (elm) {
         if (elm.selected() === false) {
             elm.selected(true);
             lista.canciones.push(elm);
@@ -62,8 +62,11 @@ zg.listaVM = function () {
             lista.sugerencias.remove(elm);
         }
     },
-    selectCancion = function (elm) {
+    selectCancion    = function (elm) {
         if (elm.selected() === false) {
+            _.each(lista.canciones(), function (e) {
+                e.selected(false);
+            });
             elm.selected(true);
             cancionS = elm;
         }
@@ -74,6 +77,7 @@ zg.listaVM = function () {
     },
     selectSugerencia = function (elm) {
         if (elm.selected() === false) {
+            _.each(lista.sugerencias(), function (e) { e.selected(false); });
             elm.selected(true);
             sugerenciaS = elm;
         }
@@ -82,22 +86,22 @@ zg.listaVM = function () {
             sugerenciaS = new zg.cancion();
         }
     },
-    up = function (elm) {
+    up               = function (elm) {
         lista.canciones.move(lista.canciones.indexOf(elm), -1)
 
     },
-    down = function (elm) {
+    down             = function (elm) {
         lista.canciones.move(lista.canciones.indexOf(elm), 1);
     },
-    save= function (elm) {
+    save             = function (elm) {
         send('/Lista/Save/', 'Post', ko.toJSON(lista), function (data) {
             window.location.replace('/Lista/Index');
-        })
+        });
     },
-    edit = function (elm) {
+    edit             = function (elm) {
         window.location.replace('/Lista/Edit/'+lista.id());
     },
-    swap = function (elm) {
+    swap             = function (elm) {
         if (cancionS.id() !== undefined && sugerenciaS.id() !== undefined)
         {
             lista.canciones.remove(cancionS);
@@ -123,64 +127,3 @@ zg.listaVM = function () {
     };
 };
 
-//zg.listaVM = function () {
-//    lista = new zg.lista(),
-//    listado = ko.observableArray(),
-//    add = function (elm)
-//    {
-//        lista.canciones.add(elm);
-//    },
-//    addSugerencias = function (elm)
-//    {
-//        lista.sugerencias.add(elm);
-//    }
-//    edit = function (elm){
-//        window.location.replace('/Lista/Edit/' + elm.id());
-//    },
-//    loadLista = function () {
-//        send('/Lista/Ultima', 'Get', undefined, function (data) {
-//            listado.removeAll();
-//            listado(listaResult(data));
-//            listado.valueHasMutated();
-//        });
-//    },
-//    loadCanciones = function () {
-//        send('/Cancion/Listado/', 'Get', undefined, function (data) {
-//            listado.removeAll();
-//            listado(cancionesListResult(data));
-//            listado.valueHasMutated();
-//            });
-//    },
-//    remove = function (elm)
-//    {
-//        lista.canciones.remove(elm);
-//    },
-//    removeSugerencia = function (elm)
-//    {
-//        lista.sugerencias.remove(elm);
-//    }
-//    saveEdited = function (elm) {
-//        send('/Lista/Edit/', 'Post', ko.toJSON(elm.cancion), function (data) {
-//            window.location.replace('/Lista/Index');
-//            })
-//    },
-//    saveLista = function (elm) {
-//        send('/Lista/Save/', 'POST', ko.toJSON(elm.cancion), function (res) {
-//            //como redireccionar desde jquery
-//            alert(res.Message);
-//            });
-//    };
-
-//    return {
-//        lista: lista,
-//        listado: listado,
-//        add: add,
-//        addSugerencias:addSugerencias,
-//        edit: edit,
-//        loadCanciones: loadCanciones,
-//        remove: remove,
-//        removeSugerencia:removeSugerencia,
-//        saveEdited: saveEdited,
-//        saveLista: saveLista
-//    };
-//};
