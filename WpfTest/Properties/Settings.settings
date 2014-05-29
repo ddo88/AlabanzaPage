@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WpfTest.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectionMongo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mongodb://pagiel:pagiel@kratos.zeitgeist.com.co:27017/alabanza</Value>
+    </Setting>
+    <Setting Name="Db" Type="System.String" Scope="User">
+      <Value Profile="(Default)">alabanza</Value>
+    </Setting>
+    <Setting Name="CancionesCollection" Type="System.String" Scope="User">
+      <Value Profile="(Default)">canciones</Value>
+    </Setting>
+    <Setting Name="ListaCollection" Type="System.String" Scope="User">
+      <Value Profile="(Default)">lista</Value>
+    </Setting>
+    <Setting Name="UsuariosCollection" Type="System.String" Scope="User">
+      <Value Profile="(Default)">usuarios</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

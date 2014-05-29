@@ -14,13 +14,15 @@ namespace EnvioCanciones
     {
         static void Main(string[] args)
         {
+            string s = Console.ReadLine();
 
-            string s = "mongodb://pagiel:pagiel@kratos.zeitgeist.com.co:27017/alabanza";
-            MongoClient mc = new MongoClient(s);
-            MongoServer server = mc.GetServer();
-            MongoDatabase db = server.GetDatabase("alabanza");
-            MongoCollection<Cancion> _evento = db.GetCollection<Cancion>("canciones");
-            _evento.InsertBatch(GetList());
+            Console.WriteLine(GetMD5(s));
+            //string s = "mongodb://pagiel:pagiel@kratos.zeitgeist.com.co:27017/alabanza";
+            //MongoClient mc = new MongoClient(s);
+            //MongoServer server = mc.GetServer();
+            //MongoDatabase db = server.GetDatabase("alabanza");
+            //MongoCollection<Cancion> _evento = db.GetCollection<Cancion>("canciones");
+            //_evento.InsertBatch(GetList());
 
             //List<Cancion> q = GetList();
 
@@ -34,10 +36,10 @@ namespace EnvioCanciones
             //p.Roles= new List<string>(){"root"};
             //_evento.InsertBatch(GetList());
 
-            foreach (var a in GetList())
-            {
-                _evento.Insert(a);
-            }
+            //foreach (var a in GetList())
+            //{
+            //    _evento.Insert(a);
+            //}
 
 //            string s= @"{title:SEÑOR MI DIOS}
 //
@@ -377,6 +379,22 @@ namespace EnvioCanciones
             return c;
         }
 
+        public static string GetMD5(string value)
+        {
+
+            value = value + "salt";
+            MD5 md = MD5.Create();
+            StringBuilder sBuilder = new StringBuilder();
+            byte[] data = md.ComputeHash(System.Text.Encoding.ASCII.GetBytes(value));
+            // Loop through each byte of the hashed data 
+            // and format each one as a hexadecimal string.
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
+
+        }
         
     }
     public enum Item

@@ -1,0 +1,50 @@
+﻿@model AlabanzaPage.Models.Cancion
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var jsonData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+    int i = 0;
+}
+
+<h2>Edit</h2>
+
+<form class="form-horizontal">
+    <fieldset>
+        <!-- ko with: cancion-->
+        <div class="form-group">
+            <label for="nombre" class="col-sm-2 control-label">Nombre:</label>
+            <input id="nombre" class="col-sm-6" data-bind="text: nombre, value: nombre" placeholder="Nombre de la Canción" />
+        </div>
+        <div class="form-group">
+            <label for="tipo" class="col-sm-2 control-label">tipo:</label>
+            <select id="tipo" class="col-sm-6" data-bind="value: tipo">
+                <option>Adoracion</option>
+                <option>Alabanza</option>
+                <option>N/S</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="letra" class="col-sm-2 control-label">letra:</label>
+            <textarea id="letra" class="col-sm-6" data-bind="text:letra,value: letra" rows="10"></textarea>
+        </div>        
+        <!-- /ko-->
+        <div class="form-group">
+            <input class="col-sm-offset-6 col-sm-2" type="submit" data-bind="click: saveEdited" />
+        </div>
+    </fieldset>
+</form>
+    
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var vm= new zg.cancionVM();
+        vm.cancion = cancionResult(@Html.Raw(jsonData));
+      ko.applyBindings(vm);
+  });
+</script>
