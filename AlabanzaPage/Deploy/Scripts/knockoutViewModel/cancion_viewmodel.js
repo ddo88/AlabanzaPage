@@ -11,7 +11,7 @@ zg.cancionVM = function () {
             var i = 0;
         },
         saveEdited = function (elm) {
-            send('/Cancion/Edit', 'Post', ko.toJSON(elm.cancion), function (data) {
+            send('/Cancion/SaveEdit', 'Post', { dataEdit: ko.toJSON(elm.cancion) }, function (data) {
                 window.location.replace('/Cancion/Index');
             })
         },
@@ -21,7 +21,7 @@ zg.cancionVM = function () {
                 listado(cancionesListResult(data));
                 listado.valueHasMutated();});},
         saveCancion = function (elm){
-            send('/Cancion/Save', 'POST', ko.toJSON(elm.cancion), function (res) {
+            send('/Cancion/Save', 'POST', { dataSave: ko.toJSON(elm.cancion) }, function (res) {
                 //como redireccionar desde jquery
                 alert(res.Message);
             });

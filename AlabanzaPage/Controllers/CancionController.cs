@@ -16,7 +16,7 @@ namespace AlabanzaPage.Controllers
 {
     public class CancionController : Controller
     {
-
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(CancionController));
         public readonly Context context = new Context();
 
         public ActionResult Index()
@@ -66,15 +66,21 @@ namespace AlabanzaPage.Controllers
         //
         // POST: /Canciones/Create
         [HttpPost]
-        public ActionResult Save()//FormCollection collection
+        public ActionResult Save(string dataSave)//FormCollection collection
         {
             try
             {
-                context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Insert(JsonConvert.DeserializeObject<Cancion>(Request.Form[0]));                
+                Cancion c = new Cancion();
+                if (!String.IsNullOrEmpty(dataSave))
+                    c = JsonConvert.DeserializeObject<Cancion>(dataSave);
+                else
+                    c = JsonConvert.DeserializeObject<Cancion>(Request.Form[0]);
+                context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Insert(c);                
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
+                log.Error("Save", ex);
                 return View();
             }
         }
@@ -86,17 +92,39 @@ namespace AlabanzaPage.Controllers
         [ValidateSecurity]
         public ActionResult Edit(string id)
         {
-            var q = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Find(Query.EQ("_id", id)).First();
-            return View(q);
+            try
+            {
+                var q = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Find(Query.EQ("_id", id)).First();
+                return View(q);
+            }
+            catch (Exception ex) {
+                log.Error("Edit", ex);
+                return RedirectToAction("Index");
+            }
+            
         }
 
         [HttpPost]
-        public ActionResult Edit()
+        public ActionResult SaveEdit(string dataEdit)
         {
-            var q = JsonConvert.DeserializeObject<Cancion>(Request.Form[0]);
-            context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Update(Query.EQ("_id", q.Id), Update.Replace(q), UpdateFlags.Upsert);
-            context.RemoveCache(Settings.Default.CancionesCollection);
-            return Json("{State:'OK'}", JsonRequestBehavior.AllowGet);            
+            try {
+
+                Cancion q = new Cancion();
+                if (!String.IsNullOrEmpty(dataEdit))
+                    q = JsonConvert.DeserializeObject<Cancion>(dataEdit);
+                else
+                    q = JsonConvert.DeserializeObject<Cancion>(Request.Form[0]);
+                log.Info(dataEdit);
+                log.Info(Request.Form[0]);
+
+                context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Update(Query.EQ("_id", q.Id), Update.Replace(q), UpdateFlags.Upsert);
+                context.RemoveCache(Settings.Default.CancionesCollection);
+                return Json("{State:'OK'}", JsonRequestBehavior.AllowGet);            
+            }
+            catch (Exception ex) {
+                return Json("{State:'ERROR'}", JsonRequestBehavior.AllowGet);            
+            }
+            
         }
 
     }

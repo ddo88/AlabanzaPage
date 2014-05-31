@@ -122,8 +122,11 @@ zg.listaVM = function () {
         listado.valueHasMutated();
     },
     save             = function (elm) {
-        send('/Lista/Save', 'Post', ko.toJSON(lista), function (data) {
-            window.location.replace('/Lista/Index');
+        send('/Lista/Save', 'POST', { dataSave: ko.toJSON(lista) }, function (data) {
+            if (data.state === 'Ok')
+                window.location.replace('/Lista/Index');
+            else
+                alert("ha ocurrido un error!");
         });
     },
     edit             = function (elm) {

@@ -10,13 +10,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace AlabanzaPage.Controllers
 {
     public class ListaController : Controller
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(ListaController));
+        private  Context context {get;set;}
 
-        public readonly Context context = new Context(); 
+        protected override void Initialize(RequestContext requestContext)
+        {
+            if (context == null)
+                context = new Context();
+            base.Initialize(requestContext);
+        }
+
         //
         // GET: /Lista/
         public ActionResult Index()
@@ -27,10 +36,17 @@ namespace AlabanzaPage.Controllers
 
         public ActionResult Ultima()
         {
-            var a = context.GetCollection<Lista>(Settings.Default.ListaCollection).FindAll().SetSortOrder(SortBy.Descending("Fecha")).ToList();
-            if(a.Count>0)                
+            try
             {
-                return Json(a.First(),JsonRequestBehavior.AllowGet);                
+                var a = context.GetCollection<Lista>(Settings.Default.ListaCollection).FindAll().SetSortOrder(SortBy.Descending("Fecha")).ToList();
+                if (a.Count > 0)
+                {
+                    return Json(a.First(), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Ultima Lista", ex);
             }
             return Json("", JsonRequestBehavior.AllowGet);
         }
@@ -53,8 +69,9 @@ namespace AlabanzaPage.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
+                log.Error("Create", ex);
                 return View();
             }
         }
@@ -83,8 +100,9 @@ namespace AlabanzaPage.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
+                log.Error("Edit", ex);
                 return View();
             }
         }
@@ -107,19 +125,28 @@ namespace AlabanzaPage.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
+                log.Error("Suggestions", ex);
                 return View();
             }
         }
 
 
-        [HttpPost]
-        public ActionResult Save()//FormCollection collection
+        //[HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Save(string dataSave)//FormCollection collection
         {
             try
             {
-                var q       = JsonConvert.DeserializeObject<Lista>(Request.Form[0]);
+                
+                Lista q= new Lista();
+                if (!String.IsNullOrEmpty(dataSave))
+                    q = JsonConvert.DeserializeObject<Lista>(dataSave);
+                else
+                    q = JsonConvert.DeserializeObject<Lista>(Request.Form[0]);
+                log.Info("data: " + dataSave);
+                log.Info("data: " + Request.Form[0]);
                 if (q.Id != null)
                 {
                     if (q.Final)//debo actualizar las canciones
@@ -145,13 +172,13 @@ namespace AlabanzaPage.Controllers
                 }
                 context.RemoveCache(Settings.Default.ListaCollection);
 
-                context.RemoveCache(Settings.Default.ListaCollection);
-                return Json("{state:ok}", JsonRequestBehavior.AllowGet);
+                return Json(new { state = "Ok" }, JsonRequestBehavior.AllowGet);
                 //return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
-                return Json("{state:false}", JsonRequestBehavior.AllowGet);
+                log.Error("Save", ex);
+                return Json(new { state = "Error" }, JsonRequestBehavior.AllowGet);
                 //return View();
             }
         }

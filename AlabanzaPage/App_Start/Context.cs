@@ -11,12 +11,14 @@ namespace AlabanzaPage.App_Start
     public class Context
     {
         public MongoDatabase Database;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(Context));
 
         public Context()
         {
             var client = new MongoClient(Settings.Default.ConnectionMongo);
             var server = client.GetServer();
             Database = server.GetDatabase(Settings.Default.Db);
+            log.Info("load context");
         }
 
         public void RemoveCache(string key)

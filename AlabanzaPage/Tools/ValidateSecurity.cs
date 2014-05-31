@@ -9,22 +9,30 @@ namespace AlabanzaPage.Tools
 {
     public class ValidateSecurity:ActionMethodSelectorAttribute
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(ValidateSecurity));
         public override bool IsValidForRequest(ControllerContext context, System.Reflection.MethodInfo methodInfo)
         {
-
-            HttpCookie authCookie = context.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
-            bool sw = false;
-            if (authCookie != null)
+            try
             {
-                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
-                string roles = authTicket.UserData;
-                if (roles=="Root" || roles=="Administrator") 
+                HttpCookie authCookie = context.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
+                bool sw = false;
+                if (authCookie != null)
+                {
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                    string roles = authTicket.UserData;
+                    if (roles == "Root" || roles == "Administrator")
                         sw = true;
+                }
+                //string Accion = methodInfo.Name;
+                //string Modulo = methodInfo.ReflectedType.Name.Replace("Controller", "");
+                //bool sw = false;
+                return sw;
             }
-            //string Accion = methodInfo.Name;
-            //string Modulo = methodInfo.ReflectedType.Name.Replace("Controller", "");
-            //bool sw = false;
-            return sw;
+            catch (Exception ex)
+            {
+                log.Error("IsValidForRequest", ex);
+                return false;
+            }
         }
     }
 

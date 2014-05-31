@@ -43,7 +43,8 @@ var send = function (url, type, data, callback) {
         $.ajax({
             url: url,
             type: type,
-            data: data,
+            //data: { dataSave: data },
+            data:  data ,
             dataType: 'json',
             success: callback
         });
