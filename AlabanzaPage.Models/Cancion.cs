@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization.IdGenerators;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -22,6 +23,7 @@ namespace AlabanzaPage.Models
         public string Tipo { get; set; }
         public string Letra { get; set; }
         //public string   Acordes   { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime UltimaVez { get; set; }
     }   
 }

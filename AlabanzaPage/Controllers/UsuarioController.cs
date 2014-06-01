@@ -16,7 +16,7 @@ namespace AlabanzaPage.Controllers
     {
         //
         // GET: /Usuario/
-        public readonly Context context = new Context();
+        public readonly Context context = Context.GetInstance();
 
         public ActionResult Index()
         {

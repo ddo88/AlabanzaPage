@@ -4,11 +4,12 @@
 }
 <h2>Lista Actual</h2>
 <!-- ko with: lista-->
-    <label data-bind="date: fecha"></label>
+
+    <label style="font-weight:bold;margin-right:5px;">Fecha:  </label><label data-bind="date: fecha"></label>
     <!-- Canciones-->
     <table id="list" class="table table-bordered table-striped table-hover">
         <thead>
-            <tr>
+            <tr style="font-weight:bold">
                 <td>Cancion</td>
                 <td>Tipo</td>
                 @*<td>Ultima Vez</td>*@

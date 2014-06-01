@@ -213,11 +213,11 @@ namespace AlabanzaPage.Controllers
 
         public class AlabanzaMembership //: MembershipProvider
         {
-            public readonly Context context = new Context();
+            public readonly Context context = Context.GetInstance();
 
             public static bool ChangePassword(string username, string oldPassword, string newPassword)
             {
-                Context context = new Context();
+                Context context = Context.GetInstance();
                 Usuario u=context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).Find(Query<Usuario>.EQ(x => x.Id, username)).First();
                 if (u.Pass == oldPassword.GetMD5())
                 {

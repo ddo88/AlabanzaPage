@@ -1,22 +1,32 @@
-﻿@model IEnumerable<AlabanzaPage.Models.Cancion>
+﻿@*@model IEnumerable<AlabanzaPage.Models.Cancion>*@
+@using PagedList.Mvc;
+@model PagedList.IPagedList<AlabanzaPage.Models.Cancion>
 @{
     ViewBag.Title = "Listado Canción";
     Layout = "~/Views/Shared/_Layout.cshtml";    
 }
-
+ 
 <h2>Listado Canciones</h2>
+
+@using (Html.BeginForm("Index", "Cancion", FormMethod.Get))
+{
+    <p>
+        Buscar: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+} 
 <table class="table table-bordered table-striped table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.ActionLink("Nombre", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tipo)
+            Tipo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UltimaVez)
+            @Html.ActionLink("Ultima Vez", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
-        <th></th>
+        <th>Opciones</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -32,18 +42,21 @@
             </td>
             <td>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
-                        options<span class="caret"></span>
+                    <button type="button" class="btn btn-xs btn-default dropdown-toggle glyphicon glyphicon-cog" data-toggle="dropdown"><span class="caret"></span>
                     </button>
 
                     <ul class="dropdown-menu">
                         <li>@Html.ActionLink("Edit", "Edit", new { id = item.Id })</li>
                         <li role="presentation" class="divider"></li>
-                        <li>@Html.ActionLink("VerLetra", "VerLetra", new { id = item.Id }) </li>
-                        <li>@Html.ActionLink("VerAcordes", "VerAcordes", new { id = item.Id })</li>
+                        <li>@Html.ActionLink("Letra", "VerLetra", new { id = item.Id }) </li>
+                        <li>@Html.ActionLink("Acordes", "VerAcordes", new { id = item.Id })</li>
                     </ul>
                 </div>
             </td>
         </tr>
     }
 </table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })) 

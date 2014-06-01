@@ -12,17 +12,56 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 
+using PagedList; 
+
 namespace AlabanzaPage.Controllers
 {
     public class CancionController : Controller
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(CancionController));
-        public readonly Context context = new Context();
+        public readonly Context context = Context.GetInstance();
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll();
-            return View(listado);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+
+            ViewBag.CurrentFilter = searchString;
+
+            var listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll().ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                listado = listado.Where<Cancion>(s => s.Nombre.ToUpper().Contains(searchString.ToUpper())).ToList();
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    listado = listado.OrderByDescending(a => a.Nombre).ToList();
+                    break;
+                case "Date":
+                    listado = listado.OrderBy(a => a.UltimaVez).ToList();
+                    break;
+                case "date_desc":
+                    listado = listado.OrderByDescending(a => a.UltimaVez).ToList();
+                    break;
+                default:  // Name ascending  
+                    listado = listado.OrderBy(a => a.Nombre).ToList();
+                    break;
+            }
+
+            int pageSize = 50;
+            int pageNumber = (page ?? 1);
+            return View(listado.ToPagedList(pageNumber, pageSize)); 
+            ///
+            //return View(listado);
         }
         //
         // GET: /Canciones/
@@ -38,14 +77,13 @@ namespace AlabanzaPage.Controllers
             return Json(listado, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult VerLetra(string id)
+        public ActionResult VerLetra  (string id)
         {
             var query = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Find(Query.EQ("_id",id));
             Cancion c = query.First();
             c.Letra=Chord.GetLyrics(c.Letra);
             return View(c);
         }
-
         public ActionResult VerAcordes(string id)
         {
             var query = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Find(Query.EQ("_id", id));
@@ -66,7 +104,7 @@ namespace AlabanzaPage.Controllers
         //
         // POST: /Canciones/Create
         [HttpPost]
-        public ActionResult Save(string dataSave)//FormCollection collection
+        public ActionResult Save(string dataSave)
         {
             try
             {

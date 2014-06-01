@@ -10,10 +10,27 @@ namespace AlabanzaPage.App_Start
 {
     public class Context
     {
+        private static Context instance;
+        private static object mutex= new object();
+
+        public static Context GetInstance()
+        { 
+            if(instance==null)
+            {
+                lock(mutex)
+                {
+                    if(instance==null)
+                    {
+                        instance= new Context();
+                    }
+                }
+            }
+            return instance;
+        }
         public MongoDatabase Database;
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(Context));
 
-        public Context()
+        private Context()
         {
             var client = new MongoClient(Settings.Default.ConnectionMongo);
             var server = client.GetServer();

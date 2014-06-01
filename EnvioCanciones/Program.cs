@@ -14,15 +14,15 @@ namespace EnvioCanciones
     {
         static void Main(string[] args)
         {
-            string s = Console.ReadLine();
+            //string s = Console.ReadLine();
 
-            Console.WriteLine(GetMD5(s));
-            //string s = "mongodb://pagiel:pagiel@kratos.zeitgeist.com.co:27017/alabanza";
-            //MongoClient mc = new MongoClient(s);
-            //MongoServer server = mc.GetServer();
-            //MongoDatabase db = server.GetDatabase("alabanza");
-            //MongoCollection<Cancion> _evento = db.GetCollection<Cancion>("canciones");
-            //_evento.InsertBatch(GetList());
+            //Console.WriteLine(GetMD5(s));
+            string s = "mongodb://pagiel:pagiel@kratos.zeitgeist.com.co:27017/alabanza";
+            MongoClient mc = new MongoClient(s);
+            MongoServer server = mc.GetServer();
+            MongoDatabase db = server.GetDatabase("alabanza");
+            MongoCollection<Cancion> _evento = db.GetCollection<Cancion>("canciones");
+            _evento.InsertBatch(GetList());
 
             //List<Cancion> q = GetList();
 

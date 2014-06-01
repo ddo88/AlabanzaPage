@@ -22,7 +22,7 @@ namespace AlabanzaPage.Controllers
         protected override void Initialize(RequestContext requestContext)
         {
             if (context == null)
-                context = new Context();
+                context = Context.GetInstance();
             base.Initialize(requestContext);
         }
 
@@ -90,7 +90,6 @@ namespace AlabanzaPage.Controllers
 
         //
         // POST: /Lista/Edit/5
-
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -133,8 +132,7 @@ namespace AlabanzaPage.Controllers
         }
 
 
-        //[HttpPost]
-        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
         public ActionResult Save(string dataSave)//FormCollection collection
         {
             try
