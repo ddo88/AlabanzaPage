@@ -13,12 +13,14 @@
             </div>
             <div class="modal-body">
                 <div id="listadoCanciones">
+                    <input type="text" data-bind="value: filter, valueUpdate:'afterkeydown'" placeholder="Buscar" />
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr><td>Nombre</td><td>Tipo</td><td>Ultima Vez</td></tr>
                         </thead>
                         <tbody>
-                            <!-- ko foreach: listado-->
+                            <!--listado-->
+                            <!-- ko foreach: computedList-->
                             <tr data-bind="click: $root.select,css: {success: selected}">
                                 <td><span data-bind="text: nombre"></span></td>
                                 <td><span data-bind="text: tipo"></span></td>

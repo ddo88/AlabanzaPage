@@ -11,7 +11,20 @@ zg.listaVM = function () {
     sugerenciaS = new zg.cancion(),
     lista = new zg.lista(),
     listado = ko.observableArray(),
-    loadLista = function () {
+    //ini_buscador
+    filter = ko.observable(""),
+    computedList = ko.computed(function () {
+        if (self.filter().length > 0) {
+            var teamsArray = self.listado();
+            return ko.utils.arrayFilter(teamsArray, function (team) {
+                return stringStartsWith(team.nombre().toLowerCase(), self.filter().toLowerCase())
+            });
+        }
+        else
+            return self.listado();
+    }),
+    //fin_buscador
+    loadLista        = function () {
         send('/Lista/Ultima', 'Get', undefined, function (data) {
             if (data === "") {
             }
@@ -27,7 +40,7 @@ zg.listaVM = function () {
             }
         });
     },
-    loadCanciones = function () {
+    loadCanciones    = function () {
         send('/Cancion/Listado', 'Get', undefined, function (data) {
             listado.removeAll();
             listado(cancionesListResult(data));
@@ -36,7 +49,7 @@ zg.listaVM = function () {
                 selectSong(lista.canciones());
         });
     },
-    selectSong = function (elm) {
+    selectSong       = function (elm) {
 
         for (var i = 0; i < elm.length; i++) {
             for (var j = 0; j < listado().length; j++) {
@@ -46,7 +59,7 @@ zg.listaVM = function () {
         }
         listado.valueHasMutated();
     },
-    select = function (elm) {
+    select           = function (elm) {
         if (elm.selected() === false) {
             elm.selected(true);
             lista.canciones.push(elm);
@@ -56,7 +69,7 @@ zg.listaVM = function () {
             lista.canciones.remove(elm);
         }
     },
-    selectSuggest = function (elm) {
+    selectSuggest    = function (elm) {
         if (elm.selected() === false) {
             elm.selected(true);
             lista.sugerencias.push(elm);
@@ -66,7 +79,7 @@ zg.listaVM = function () {
             lista.sugerencias.remove(elm);
         }
     },
-    selectCancion = function (elm) {
+    selectCancion    = function (elm) {
         if (elm.selected() === false) {
             _.each(lista.canciones(), function (e) {
                 e.selected(false);
@@ -90,11 +103,10 @@ zg.listaVM = function () {
             sugerenciaS = new zg.cancion();
         }
     },
-    //sort
-    currentItem    = ko.observable('');
-    sortDirection = ko.observable(true),
-    columnNames    = ko.observableArray(['Nombre', 'Tipo', 'UltimaVez']),
-    sortColumn     = function (item) {
+    currentItem      = ko.observable('');
+    sortDirection    = ko.observable(true),
+    columnNames      = ko.observableArray(['Nombre', 'Tipo', 'UltimaVez']),
+    sortColumn       = function (item) {
         //if (item == currentItem()) {
         //    sortDirection(!sortDirection());
         //} else {
@@ -108,8 +120,7 @@ zg.listaVM = function () {
         //    sorted = listado.sortByProperty(item.toLowerCase()).reverse();
         //}
         //listado(sorted);
-    },
-    //sort
+    },//sort    
     up               = function (elm) {
         lista.canciones.move(lista.canciones.indexOf(elm), -1)
 
@@ -159,8 +170,17 @@ zg.listaVM = function () {
         currentItem:      currentItem,
         sortDirection:    sortDirection,
         columnNames:      columnNames,
-        sortColumn:       sortColumn,
+        sortColumn:       sortColumn//,
 
     };
 };
 
+
+var stringStartsWith = function (string, startsWith) {
+    string = string || "";
+    if (startsWith.length > string.length)
+        return false;
+    return string.substring(0, startsWith.length) === startsWith;
+};
+
+var sortList=function(left, right) { return left.nombre() == right.nombre() ? 0 : (left.nombre() < right.nombre() ? -1 : 1) };

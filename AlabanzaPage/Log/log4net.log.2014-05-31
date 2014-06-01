@@ -1,0 +1,91 @@
+2014-05-31 11:03:58,670 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 11:04:25,217 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:04:34,147 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:04:51,069 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:04:55,486 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:05:08,835 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:09:31,871 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 11:10:02,941 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:10:05,840 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:10:35,961 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:13:22,829 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 11:15:15,055 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 11:15:24,381 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:15:34,772 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:15:40,772 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:15:41,906 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:16:46,513 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:17:11,160 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:18:14,296 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:21:16,673 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 11:22:01,564 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:22:03,619 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:22:28,012 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:22:28,592 INFO AlabanzaPage.Controllers.ListaController - data: 
+2014-05-31 11:22:28,593 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:23:30,630 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:26:21,757 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 11:31:03,235 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 11:32:42,392 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:34:21,430 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 11:35:47,360 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:36:01,418 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:43:15,615 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 11:45:24,262 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:45:34,086 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:46:14,893 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:46:22,447 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:46:22,447 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:46:51,305 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:46:55,446 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:46:56,066 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:48:48,304 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:48:50,623 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:48:50,623 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:49:09,033 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:49:12,382 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:49:59,542 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:50:02,620 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:50:02,621 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:52:30,879 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 11:52:49,614 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:52:56,056 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:53:41,316 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:53:41,703 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:53:41,703 INFO AlabanzaPage.Controllers.ListaController - data: {"canciones":[{"id":"53629c7de3f6ce14b067d963","nombre":"A nadie mas que a ti","tipo":"Adoracion","letra":"","ultimaVez":"/Date(1399183877597)/","selected":true}],"sugerencias":[]}
+2014-05-31 11:53:55,127 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:53:56,640 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:54:00,606 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 11:54:00,609 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:25:33,448 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 12:26:07,942 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:26:16,187 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:26:26,959 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:26:30,300 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:27:01,200 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:27:26,646 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:27:41,650 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:28:45,421 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 12:30:55,182 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:31:44,650 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:31:54,671 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:32:11,380 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:32:31,263 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:32:38,660 INFO AlabanzaPage.Controllers.CancionController - {"id":"53629c7de3f6ce14b067d964","nombre":"A nuestro Dios","tipo":"Adoracion","letra":"prueba","ultimaVez":"2014-05-04T17:43:00.258Z","selected":false}
+2014-05-31 12:32:50,567 INFO AlabanzaPage.Controllers.CancionController - {"id":"53629c7de3f6ce14b067d964","nombre":"A nuestro Dios","tipo":"Adoracion","letra":"prueba","ultimaVez":"2014-05-04T17:43:00.258Z","selected":false}
+2014-05-31 12:32:51,148 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:33:03,465 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 12:33:13,557 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 20:07:03,567 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 20:09:37,599 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 20:21:01,034 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 20:27:35,324 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 20:53:24,969 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 20:55:40,702 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 21:23:27,510 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 21:23:41,794 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 21:27:24,579 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 21:27:36,057 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 21:27:56,741 INFO AlabanzaPage.App_Start.Context - load context
+2014-05-31 22:01:52,216 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-05-31 22:02:18,135 INFO AlabanzaPage.App_Start.Context - load context

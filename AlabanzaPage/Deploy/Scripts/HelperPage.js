@@ -112,3 +112,13 @@ ko.observableArray.fn.sortByProperty = function (prop) {
             return 1;
     });
 }
+
+
+
+//ko.utils.stringStartsWith = function (string, startsWith) {
+//    string = string || "";
+//    if (startsWith.length > string.length)
+//        return false;
+//    return string.substring(0, startsWith.length) === startsWith;
+//};
+        

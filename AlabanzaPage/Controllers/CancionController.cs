@@ -73,7 +73,8 @@ namespace AlabanzaPage.Controllers
         [OutputCache(Duration = 60)]
         public ActionResult Listado()
         {
-            var listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll();
+            var listado = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).FindAll().ToList();
+            listado = listado.OrderBy(x => x.Nombre).ToList();
             return Json(listado, JsonRequestBehavior.AllowGet);
         }
 

@@ -17,7 +17,7 @@ namespace AlabanzaPage.Controllers
     public class ListaController : Controller
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(ListaController));
-        private  Context context {get;set;}
+        private                 Context      context {get;set;}
 
         protected override void Initialize(RequestContext requestContext)
         {
@@ -58,53 +58,46 @@ namespace AlabanzaPage.Controllers
             return View();
         }
 
-        //
-        // POST: /Lista/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch(Exception ex)
-            {
-                log.Error("Create", ex);
-                return View();
-            }
-        }
+        ////
+        //// POST: /Lista/Create
+        //[HttpPost]
+        //public ActionResult Create(FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add insert logic here
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        log.Error("Create", ex);
+        //        return View();
+        //    }
+        //}
 
         //
         // GET: /Lista/Edit/5
         public ActionResult Edit(string id)
         {
-            //var query = context.GetCollection<Lista>(Settings.Default.ListaCollection).Find(Query.EQ("_id",id)).ToList();
-            //if (query.Count > 0)
-            //    return View(query.First());
-            //else
-            //    return RedirectToAction("Index");
             return View();
         }
 
-        //
-        // POST: /Lista/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch(Exception ex)
-            {
-                log.Error("Edit", ex);
-                return View();
-            }
-        }
+        ////
+        //// POST: /Lista/Edit/5
+        //[HttpPost]
+        //public ActionResult Edit(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        log.Error("Edit", ex);
+        //        return View();
+        //    }
+        //}
 
         //
         // GET: /Lista/Delete/5
@@ -121,7 +114,6 @@ namespace AlabanzaPage.Controllers
             try
             {
                 // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
             catch(Exception ex)
@@ -130,14 +122,12 @@ namespace AlabanzaPage.Controllers
                 return View();
             }
         }
-
-
+        
         [HttpPost]
         public ActionResult Save(string dataSave)//FormCollection collection
         {
             try
             {
-                
                 Lista q= new Lista();
                 if (!String.IsNullOrEmpty(dataSave))
                     q = JsonConvert.DeserializeObject<Lista>(dataSave);
@@ -169,15 +159,12 @@ namespace AlabanzaPage.Controllers
                     context.GetCollection<Lista>(Settings.Default.ListaCollection).Insert(q);
                 }
                 context.RemoveCache(Settings.Default.ListaCollection);
-
                 return Json(new { state = "Ok" }, JsonRequestBehavior.AllowGet);
-                //return RedirectToAction("Index");
             }
             catch(Exception ex)
             {
                 log.Error("Save", ex);
                 return Json(new { state = "Error" }, JsonRequestBehavior.AllowGet);
-                //return View();
             }
         }
     }
