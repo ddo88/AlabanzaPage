@@ -15,14 +15,13 @@ zg.cancionVM = function () {
                 window.location.replace('/Cancion/Index');
             })
         },
-        load        = function (){
+        load        = function ()   {
             send('/Cancion/Listado', 'Get',undefined, function (data) {
                 listado.removeAll();
                 listado(cancionesListResult(data));
                 listado.valueHasMutated();});},
         saveCancion = function (elm){
             send('/Cancion/Save', 'POST', { dataSave: ko.toJSON(elm.cancion) }, function (res) {
-                //como redireccionar desde jquery
                 alert(res.Message);
             });
         };

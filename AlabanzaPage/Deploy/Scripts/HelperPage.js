@@ -51,6 +51,45 @@ var send = function (url, type, data, callback) {
     }
 };
 
+
+var transposeProcess = function (list,amount)
+{
+    _.forEach(list, function (item) {
+        var j = transposeChord(item.innerHTML, amount);
+        item.textContent = j;
+    });
+}
+var transposeChord = function (chord, amount) {
+    var scale = ["C", "Cb", "C#", "D", "Db", "D#", "E", "Eb", "E#", "F", "Fb", "F#", "G", "Gb", "G#",
+          "A", "Ab", "A#", "B", "Bb", "B#"];
+    var transp = ["Cb", "C", "C#", "Bb", "Cb", "C", "C", "C#", "D", "Db", "D", "D#", "C", "Db", "D",
+                  "D", "D#", "E", "Eb", "E", "F", "D", "Eb", "E", "E", "E#", "F#", "E", "F", "F#",
+                  "Eb", "Fb", "F", "F", "F#", "G", "Gb", "G", "G#", "F", "Gb", "G", "G", "G#", "A",
+                  "Ab", "A", "A#", "G", "Ab", "A", "A", "A#", "B", "Bb", "B", "C", "A", "Bb", "B",
+                  "B", "B#", "C#"];
+    var subst = chord.match(/[^b#][#b]?/g);
+    for (var ax in subst) {
+        if (scale.indexOf(subst[ax]) !== -1) {
+            if (amount > 0) {
+                for (ix = 0; ix < amount; ix++) {
+                    var pos = scale.indexOf(subst[ax]);
+                    var transpos = 3 * pos - 2 + 3;
+                    subst[ax] = transp[transpos + 1];
+                }
+            }
+            if (amount < 0) {
+                for (ix = 0; ix > amount; ix--) {
+                    var pos = scale.indexOf(subst[ax]);
+                    var transpos = 3 * pos - 2 + 3;
+                    subst[ax] = transp[transpos - 1];
+                }
+            }
+        }
+    }
+    //chord = subst.join("");
+    return subst.join("");
+};
+
 ko.observableArray.fn.move = function (index, delta) {
 
     // This method moves an element within the array

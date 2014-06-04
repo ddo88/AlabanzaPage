@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.ActionLink("Ver Acordes", "VerAcordes", new { id = Model.Id }) |
-<h2>Letra</h2>
+<h3>Letra</h3>
 
 <fieldset>
-    <legend>Cancion</legend>
-
     <div class="display-label">
         <b>
             @Html.DisplayNameFor(model => model.Nombre)

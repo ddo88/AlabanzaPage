@@ -6,10 +6,11 @@
 }
 
 @Html.ActionLink("Ver Letras", "VerLetra", new { id = Model.Id }) |
-<h2>Acordes</h2>
+
+<h3>Acordes</h3>
 
 <fieldset>
-    <legend>Cancion</legend>
+    @*<legend>Cancion</legend>*@
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Nombre)
@@ -24,10 +25,16 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Tipo)
     </div>
+    <div class="navbar-right">
+        <button id="cb1" class="glyphicon glyphicon-fast-backward"></button>
+        <button id="cb2" class="glyphicon glyphicon-step-backward"></button>
+        <button id="cb3" class="glyphicon glyphicon-step-forward"></button>
+        <button id="cb4" class="glyphicon glyphicon-fast-forward"></button>
+    </div>
     <br />
     <div class="display-label">
         @Html.DisplayNameFor(model => model.Letra)
-    </div>
+    </div>    
     <div class="display-field">
         <div id="letra">
             @Html.Raw(Model.Letra)
@@ -39,3 +46,19 @@
     @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
     @Html.ActionLink("Volver a la Lista", "Index")
 </p>
+<script>
+    $(document).ready(function () {
+        $('#cb1').click(function () {
+            transposeProcess($('.chord'), -2);
+        });
+        $('#cb2').click(function () {
+            transposeProcess($('.chord'), -1);
+        });
+        $('#cb3').click(function () {
+            transposeProcess($('.chord'), 1);
+        });
+        $('#cb4').click(function () {
+            transposeProcess($('.chord'), 2);
+        });
+    });
+</script>

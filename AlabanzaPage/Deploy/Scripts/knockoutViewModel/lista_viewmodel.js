@@ -7,12 +7,12 @@
 var zg = zg || {};
 
 zg.listaVM = function () {
-    cancionS = new zg.cancion(),
-    sugerenciaS = new zg.cancion(),
-    lista = new zg.lista(),
-    listado = ko.observableArray(),
+    cancionS     = new zg.cancion(),
+    sugerenciaS  = new zg.cancion(),
+    lista        = new zg.lista(),
+    listado      = ko.observableArray(),
     //ini_buscador
-    filter = ko.observable(""),
+    filter       = ko.observable(""),
     computedList = ko.computed(function () {
         if (self.filter().length > 0) {
             var teamsArray = self.listado();
@@ -106,21 +106,6 @@ zg.listaVM = function () {
     currentItem      = ko.observable('');
     sortDirection    = ko.observable(true),
     columnNames      = ko.observableArray(['Nombre', 'Tipo', 'UltimaVez']),
-    sortColumn       = function (item) {
-        //if (item == currentItem()) {
-        //    sortDirection(!sortDirection());
-        //} else {
-        //    currentItem(item);
-        //    sortDirection(true);
-        //}
-        //var sorted;
-        //if (sortDirection()) {
-        //    sorted = listado.sortByProperty(item.toLowerCase())
-        //} else {
-        //    sorted = listado.sortByProperty(item.toLowerCase()).reverse();
-        //}
-        //listado(sorted);
-    },//sort    
     up               = function (elm) {
         lista.canciones.move(lista.canciones.indexOf(elm), -1)
 
@@ -141,7 +126,7 @@ zg.listaVM = function () {
         });
     },
     edit             = function (elm) {
-        window.location.replace('/Lista/Edit'+lista.id());
+        window.location.replace('/Lista/Edit/'+lista.id());
     },
     swap             = function (elm) {
         if (cancionS.id() !== undefined && sugerenciaS.id() !== undefined)
@@ -169,9 +154,8 @@ zg.listaVM = function () {
         edit:             edit,
         currentItem:      currentItem,
         sortDirection:    sortDirection,
-        columnNames:      columnNames,
-        sortColumn:       sortColumn//,
-
+        columnNames: columnNames
+        //,sortColumn:       sortColumn
     };
 };
 

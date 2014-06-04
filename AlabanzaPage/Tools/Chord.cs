@@ -106,7 +106,7 @@ namespace AlabanzaPage.Tools
                     s = @"(?<title>\{title:[\w\s]*\})";
                     break;
                 case RegexList.Chords:
-                    s = @"(?<acordes>\[[C|D|E|F|G|A|B]{1}[maj|m|b|#|0-9]*(\/[C|D|E|F|G|A|B][maj|m|b|#|0-9]*)*\])";
+                    s = @"(?<acordes>\[[C|D|E|F|G|A|B]{1}[add|sus|maj|m|b|#|0-9]*(\/[C|D|E|F|G|A|B][add|sus|maj|m|b|#|0-9]*)*\])";
                     break;
                 case RegexList.Chorus:
                     s = @"(?<chorus>\{start_chorus\}[\w\W\s]*\{end_chorus\})";
