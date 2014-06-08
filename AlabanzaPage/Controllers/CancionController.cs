@@ -90,6 +90,7 @@ namespace AlabanzaPage.Controllers
             var query = context.GetCollection<Cancion>(Settings.Default.CancionesCollection).Find(Query.EQ("_id", id));
             Cancion c = query.First();
             c.Letra = Chord.GetChords(c.Letra);
+            c.Nombre = c.Nombre.Trim();
             return View(c);
         }
 

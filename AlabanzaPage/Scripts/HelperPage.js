@@ -51,15 +51,13 @@ var send = function (url, type, data, callback) {
     }
 };
 
-
-var transposeProcess = function (list,amount)
-{
+var transposeProcess = function (list, amount) {
     _.forEach(list, function (item) {
         var j = transposeChord(item.innerHTML, amount);
         item.textContent = j;
     });
-}
-var transposeChord = function (chord, amount) {
+};
+var transposeChord   = function (chord, amount) {
     var scale = ["C", "Cb", "C#", "D", "Db", "D#", "E", "Eb", "E#", "F", "Fb", "F#", "G", "Gb", "G#",
           "A", "Ab", "A#", "B", "Bb", "B#"];
     var transp = ["Cb", "C", "C#", "Bb", "Cb", "C", "C", "C#", "D", "Db", "D", "D#", "C", "Db", "D",

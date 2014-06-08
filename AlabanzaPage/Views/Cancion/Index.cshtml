@@ -6,13 +6,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";    
 }
  
-<h2>Listado Canciones</h2>
+<h3>Listado Canciones</h3>
 
 @using (Html.BeginForm("Index", "Cancion", FormMethod.Get))
 {
     <p>
-        Buscar: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { placeholder ="Buscar"})
+        <input type="submit" value="Search" class="pop"  />
     </p>
 } 
 <table class="table table-bordered table-striped table-hover">

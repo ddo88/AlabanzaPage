@@ -4,43 +4,40 @@
     ViewBag.Title = "Acordes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @Html.ActionLink("Ver Letras", "VerLetra", new { id = Model.Id }) |
 
-<h3>Acordes</h3>
-
-<fieldset>
+<h4>Acordes</h4>
+<fieldset class="form-horizontal">
+    <button class="btn btn-sm btn-info" id="btnDetalles">detalles</button>
+    <button class="btn btn-sm btn-info" id="btnOcultarDetalles">ocultar detalles</button>
     @*<legend>Cancion</legend>*@
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Nombre)
+    <div id="detalles" class="form-group">
+        <label class="control-label"><b>Nombre</b></label>
+        <div class="display-label">
+            @Html.DisplayFor(model => model.Nombre)
+        </div>
+        <label><b>Tipo:</b></label>
+        <div class="display-label">
+            @Html.DisplayFor(model => model.Tipo)
+        </div>
+        <div class="display-label">
+            <label><b>Letra</b></label>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nombre)
-    </div>
-    <br />
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Tipo)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Tipo)
-    </div>
+    @*class="alert alert-info"*@
+    
     <div class="navbar-right">
         <button id="cb1" class="glyphicon glyphicon-fast-backward"></button>
         <button id="cb2" class="glyphicon glyphicon-step-backward"></button>
         <button id="cb3" class="glyphicon glyphicon-step-forward"></button>
         <button id="cb4" class="glyphicon glyphicon-fast-forward"></button>
-    </div>
-    <br />
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Letra)
     </div>    
+    <hr />
     <div class="display-field">
         <div id="letra">
             @Html.Raw(Model.Letra)
         </div>
     </div>
-
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
@@ -48,6 +45,8 @@
 </p>
 <script>
     $(document).ready(function () {
+        $('#detalles').hide();
+        $('#btnOcultarDetalles').hide();
         $('#cb1').click(function () {
             transposeProcess($('.chord'), -2);
         });
@@ -59,6 +58,17 @@
         });
         $('#cb4').click(function () {
             transposeProcess($('.chord'), 2);
+        });
+        $('#btnOcultarDetalles').click(function () {
+            $('#btnDetalles').show(500);
+            $('#detalles').hide(500);
+            $('#btnOcultarDetalles').hide(500);
+            
+        });
+        $('#btnDetalles').click(function () {
+            $('#btnOcultarDetalles').show(500);
+            $('#detalles').show(500);
+            $('#btnDetalles').hide(500);
         });
     });
 </script>

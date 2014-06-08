@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
         
-    <link href="~/Content/bootstrap.yeti.min.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap.yeti.min.css" rel="stylesheet" />*@
+    <link href="~/Content/bootstrap.yeti.css" rel="stylesheet" />
+    <link href="~/Content/hover.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Nav Bar -->
@@ -57,8 +60,8 @@
     <div class="container">
         <div class="page-header" id="banner">
             <div class="row">
-                    <h3>Nombre del grupo</h3>
-                    <p>Iglesia Cristiana Pagiel</p>
+                    @*<h3 class="pulse">Nombre del grupo</h3>
+                    <p>Iglesia Cristiana Pagiel</p>*@
             </div>
         </div>
     </div>
@@ -66,7 +69,11 @@
     <div class="container fill" ><!--modal-container-->
         <div class="row">
             <div id="map">
-                <div class="col-lg-3">
+                <div class="col-lg-2">
+                        <div>
+                                <h3 class="pulse">Nombre del grupo</h3>
+                                <p>Iglesia Cristiana Pagiel</p>
+                        </div>                    
                     <div id="carousel-instruments" class="carousel slide visible-lg" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">

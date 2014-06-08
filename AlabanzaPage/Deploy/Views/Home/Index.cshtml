@@ -3,21 +3,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="bs-component">
-    <div class="alert alert-info">
-        <strong>@Html.ActionLink("Canciones", "Index", "Cancion")</strong>        
-    </div>
+    <a href="/Cancion">
+        <div class="alert alert-info outline-outward-info">
+            <strong>Canciones</strong>
+        </div>
+    </a>
 </div>
 <div class="bs-component">
-    <div class="alert alert-success">
-        <strong>
-            @Html.ActionLink("Lista Activa", "Index", "Lista")
-        </strong>
-    </div>
+    <a href="/Lista">
+        <div class="alert alert-success outline-outward-success">
+            <strong>
+                Lista Activa
+            </strong>
+        </div>
+    </a>
 </div>
 <div class="bs-component">
-    <div class="alert alert-warning">
-        <strong>@Html.ActionLink("Usuarios", "Index", "Usuario")</strong>
-    </div>
+    <a href="/Usuario">
+        <div class="alert alert-warning outline-outward-warning">
+            <strong>Usuarios</strong>
+        </div>
+    </a>
 </div>
 

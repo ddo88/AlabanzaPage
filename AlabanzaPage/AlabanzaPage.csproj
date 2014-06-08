@@ -647,6 +647,7 @@
     <Content Include="Content\glyphicons\glyphicons_467_server_flag.png" />
     <Content Include="Content\glyphicons\glyphicons_468_server_lock.png" />
     <Content Include="Content\glyphicons\glyphicons_469_server_new.png" />
+    <Content Include="Content\hover.css" />
     <Content Include="Content\Images\Carrusel\Custom_Les_Paul_Standard_Quilt_Korina_Transparent_Black_CS11258_1.000.jpg" />
     <Content Include="Content\Images\Carrusel\motif_07.Stage.jpg" />
     <Content Include="Content\Images\Carrusel\music.bass_00388509.jpg" />

@@ -5,39 +5,51 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @Html.ActionLink("Ver Acordes", "VerAcordes", new { id = Model.Id }) |
-<h3>Letra</h3>
+<h4>Letra</h4>
 
-<fieldset>
-    <div class="display-label">
-        <b>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </b>
+<fieldset class="form-horizontal">
+    <button class="btn btn-sm btn-info" id="btnDetalles">detalles</button>
+    <button class="btn btn-sm btn-info" id="btnOcultarDetalles">ocultar detalles</button>
+    @*<legend>Cancion</legend>*@
+    <div id="detalles" class="form-group">
+        <label class="control-label"><b>Nombre</b></label>
+        <div class="display-label">
+            @Html.DisplayFor(model => model.Nombre)
+        </div>
+        <label><b>Tipo:</b></label>
+        <div class="display-label">
+            @Html.DisplayFor(model => model.Tipo)
+        </div>
+        <div class="display-label">
+            <label><b>Letra</b></label>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Nombre)
-    </div>
-
-    <div class="display-label">
-        <b>
-            @Html.DisplayNameFor(model => model.Tipo)
-        </b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Tipo)
-    </div>
-
-    <div class="display-label">
-        <b>
-            @Html.DisplayNameFor(model => model.Letra)
-        </b></br>
-    </div>
+    <hr />
     <div class="display-field">
         <div id="letra">
             @Html.Raw(Model.Letra)
-        </div>        
+        </div>
     </div>
 
 </fieldset>
 <p>
     @Html.ActionLink("Volver a la Lista", "Index")
 </p>
+
+<script>
+    $(document).ready(function () {
+        $('#detalles').hide();
+        $('#btnOcultarDetalles').hide();
+        $('#btnOcultarDetalles').click(function () {
+            $('#btnDetalles').show(500);
+            $('#detalles').hide(500);
+            $('#btnOcultarDetalles').hide(500);
+
+        });
+        $('#btnDetalles').click(function () {
+            $('#btnOcultarDetalles').show(500);
+            $('#detalles').show(500);
+            $('#btnDetalles').hide(500);
+        });
+    });
+</script>
