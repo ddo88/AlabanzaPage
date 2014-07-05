@@ -52,7 +52,7 @@
 @if (Request.IsAuthenticated)
 { 
     <!-- ko if: lista.final-->
-    <button type="button" class="btn btn-primary btn-xs">Ver Presentación</button>
+    <button data-bind="click: presentation" type="button" class="btn btn-primary btn-xs">Ver Presentación</button>
     <!-- /ko -->
     <!-- ko ifnot: lista.final-->
     <button type="submit" class="btn btn-primary btn-xs" data-bind="click: save">Guardar</button>
@@ -104,6 +104,7 @@
 
 <script>
     $(document).ready(function () {
+
         var model = new zg.listaVM();
         model.loadLista();
         ko.applyBindings(model);

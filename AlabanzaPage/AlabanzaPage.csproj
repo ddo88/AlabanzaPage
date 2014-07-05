@@ -168,6 +168,7 @@
     </Compile>
     <Compile Include="Tools\Chord.cs" />
     <Compile Include="Tools\ExtensionMethods.cs" />
+    <Compile Include="Tools\MailClass.cs" />
     <Compile Include="Tools\ValidateSecurity.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -721,6 +722,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\HelperPage.js" />
+    <Content Include="Scripts\holder.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />

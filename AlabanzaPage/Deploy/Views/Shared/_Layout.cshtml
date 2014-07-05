@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
         
-    @*<link href="~/Content/bootstrap.yeti.min.css" rel="stylesheet" />*@
-    <link href="~/Content/bootstrap.yeti.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.yeti.min.css" rel="stylesheet" />
     <link href="~/Content/hover.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
     <link href="~/Content/Site.css" rel="stylesheet" />
+    @*@Styles.Render("~/Content/css")*@
+    <script src="~/Scripts/jquery-2.1.0.min.js"></script>
+    
 </head>
 <body>
     <!-- Nav Bar -->
@@ -26,17 +27,17 @@
             </div>
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
-                    <li>
+                    <li class="pop">
                         @Html.ActionLink("Home", "Index","Home")
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown pop">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Canciones<span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="download">
                             <li>@Html.ActionLink("Listado Completo", "Index", "Cancion")</li>
                             @Html.ValidatedListActionList(Request, "Añadir", "Create", "Cancion")
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown pop">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Lista<span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="download">
                             <li>@Html.ActionLink("Lista Activa", "Index", "Lista")</li>
@@ -44,7 +45,7 @@
                             @Html.ValidatedListActionList(Request, "Editar Lista", "Edit", "Lista")
                         </ul>
                     </li>
-                    <li>
+                    <li class="pop">
                         @Html.ActionLink("Usuarios", "Index","Usuario")
                     </li>
                     
@@ -69,11 +70,11 @@
     <div class="container fill" ><!--modal-container-->
         <div class="row">
             <div id="map">
-                <div class="col-lg-2">
-                        <div>
-                                <h3 class="pulse">Nombre del grupo</h3>
-                                <p>Iglesia Cristiana Pagiel</p>
-                        </div>                    
+                <div class="col-lg-2 visible-lg">
+                    <div>
+                        <h3 class="pulse">Nombre del grupo</h3>
+                        <p>Iglesia Cristiana Pagiel</p>
+                    </div>
                     <div id="carousel-instruments" class="carousel slide visible-lg" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
@@ -115,18 +116,19 @@
 
     @*@RenderSection("scripts", required: false)*@
 
+    @*@Scripts.Render("~/bundles/thirdparties")*@
+    @*@Scripts.Render("~/bundles/knockout")*@
 
     <script src="~/Scripts/underscore-min.js"></script>
     <script type='text/javascript' src="~/Scripts/moment.min.js"></script>
     <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script type='text/javascript' src="~/Scripts/knockout-2.2.0.js"></script>
     <script type='text/javascript' src="http://imsky.github.io/holder/holder.js"></script>
-
-    <script type='text/javascript' src="~/Scripts/HelperPage.js"></script>
+    <script type='text/javascript' src="~/Scripts/knockout-2.2.0.js"></script>
     <script src="~/Scripts/KnockoutModel/lista_model.js"></script>
     <script src="~/Scripts/KnockoutModel/cancion_model.js"></script>
     <script src="~/Scripts/knockoutViewModel/lista_viewmodel.js"></script>
     <script src="~/Scripts/knockoutViewModel/cancion_viewmodel.js"></script>
+    <script type='text/javascript' src="~/Scripts/HelperPage.js"></script>
 
     <script type="text/javascript" >
          $(document).ready(function() {        

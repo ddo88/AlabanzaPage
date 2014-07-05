@@ -55,21 +55,7 @@ namespace MvcApplication2.Controllers
             sb.Append(string.Format("<a HREF='{0}'>Listado</a>",url));
             return sb.ToString();
         }
-
-        //public bool Send()
-        //{
-        //    MailMessage mail  = new MailMessage("ddo88@hotmail.com", "ddo88@outlook.com");
-        //    SmtpClient client = new SmtpClient();
-        //    client.Port = 465;
-        //    client.DeliveryMethod = SmtpDeliveryMethod.Network;
-        //    //client.UseDefaultCredentials = false;
-        //    client.Credentials = new NetworkCredential("ddo88@hotmail.com", "@@hellsing01");
-        //    client.Host = "smtp.live.com";
-        //    mail.Subject = String.Format("Listado Cancion Domingo ,{0}.", l.Fecha.ToString("yyyy-MM-dd"));
-            
-        //    mail.Body = sb.ToString();
-        //    client.Send(mail);
-        //}
+                
     }
 
     

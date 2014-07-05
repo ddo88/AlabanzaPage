@@ -7,9 +7,9 @@
 var zg = zg || {};
 
 zg.listaVM = function () {
-    cancionS     = new zg.cancion(),
-    sugerenciaS  = new zg.cancion(),
-    lista        = new zg.lista(),
+    cancionS     = new zg.cancion();
+    sugerenciaS  = new zg.cancion();//,
+    lista        = new zg.lista();//,
     listado      = ko.observableArray(),
     //ini_buscador
     filter       = ko.observable(""),
@@ -137,6 +137,11 @@ zg.listaVM = function () {
             lista.sugerencias.push(cancionS);
         }
     };
+
+    presentation = function () {
+        window.location.replace('/Lista/Presentation/' + lista.id());
+
+    };
     return {
         lista:            lista,         // este objecto contiene todos los datos de la lista
         listado:          listado,       // en este arreglo se carga los listado de las canciones para ser seleccionados
@@ -154,7 +159,8 @@ zg.listaVM = function () {
         edit:             edit,
         currentItem:      currentItem,
         sortDirection:    sortDirection,
-        columnNames: columnNames
+        columnNames: columnNames,
+        presentation:presentation
         //,sortColumn:       sortColumn
     };
 };

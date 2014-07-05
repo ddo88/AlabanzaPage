@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApplication2", "MvcApplication2\MvcApplication2.csproj", "{8E81C49F-00FC-468B-A833-28A4C318B04E}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlabanzaPage.Models", "AlabanzaPage.Models\AlabanzaPage.Models.csproj", "{AEC07674-E9DA-48F6-8E43-44E5BDC6F3B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTest", "WpfTest\WpfTest.csproj", "{1919DFB2-42E6-416E-8EAA-DF37ED32839D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlabanzaPageTest", "AlabanzaPageTest\AlabanzaPageTest.csproj", "{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +87,16 @@ Global
 		{1919DFB2-42E6-416E-8EAA-DF37ED32839D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1919DFB2-42E6-416E-8EAA-DF37ED32839D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1919DFB2-42E6-416E-8EAA-DF37ED32839D}.Release|x86.ActiveCfg = Release|Any CPU
+		{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9A4DD56D-0BE2-466C-8D0C-E175F10DBEB8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
