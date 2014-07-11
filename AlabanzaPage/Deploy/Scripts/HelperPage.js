@@ -11,7 +11,8 @@ var cancionesListResult = function (result) {
         n.nombre   (item.Nombre);
         n.tipo     (item.Tipo);
         n.ultimaVez(item.UltimaVez);
-        n.letra    (item.Letra);
+        n.letra(item.Letra);
+        n.observaciones(item.Observaciones);
         n.id(item.Id);
 
         list.push(n);
@@ -26,6 +27,7 @@ var cancionResult = function (data) {
     n.tipo(item.Tipo);
     n.ultimaVez(item.UltimaVez);
     n.letra(item.Letra);
+    n.observaciones(item.Observaciones);
     n.id(item.Id);
     return n;
 };

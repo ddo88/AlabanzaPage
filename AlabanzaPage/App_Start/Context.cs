@@ -33,6 +33,7 @@ namespace AlabanzaPage.App_Start
         private Context()
         {
             var client = new MongoClient(Settings.Default.ConnectionMongo);
+            //var client = new MongoClient(Settings.Default.ConnectionMongoTest);
             var server = client.GetServer();
             Database = server.GetDatabase(Settings.Default.Db);
             log.Info("load context");

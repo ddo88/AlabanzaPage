@@ -121,7 +121,7 @@ namespace AlabanzaPage.Controllers
             catch(Exception ex)
             {
                 log.Error("Save", ex);
-                return View();
+                return RedirectToAction("Index");
             }
         }
 

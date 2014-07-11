@@ -1,0 +1,8 @@
+2014-07-07 18:04:27,354 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-07-07 18:06:56,568 INFO AlabanzaPage.App_Start.Context - load context
+2014-07-07 18:09:59,594 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-07-07 18:20:34,158 INFO AlabanzaPage.App_Start.Context - load context
+2014-07-07 18:22:55,091 INFO AlabanzaPage.Controllers.CancionController - {"id":"53bb2b69e3f6ce1de47ef268","nombre":"prueba","tipo":"Adoracion","letra":"","ultimaVez":"0001-01-01T00:00:00Z","observaciones":"observacion 1 y 2\nobservacion 4 6","selected":false}
+2014-07-07 18:22:55,092 INFO AlabanzaPage.Controllers.CancionController - {"id":"53bb2b69e3f6ce1de47ef268","nombre":"prueba","tipo":"Adoracion","letra":"","ultimaVez":"0001-01-01T00:00:00Z","observaciones":"observacion 1 y 2\nobservacion 4 6","selected":false}
+2014-07-07 18:33:59,803 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-07-07 18:34:11,639 INFO AlabanzaPage.App_Start.Context - load context

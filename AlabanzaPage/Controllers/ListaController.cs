@@ -213,6 +213,7 @@ namespace AlabanzaPage.Controllers
         {
             MailClass mc = new MailClass("alabanza.iglesiapagiel@hotmail.com", "@@gato01");
             mc.Send(String.Join(",",context.GetCollection<Usuario>(Settings.Default.UsuariosCollection).FindAll().ToList().Select(x => x.Id).ToArray()), l, "http://alabanza.iglesiapagiel.com/Lista/Index");
+            //mc.Send("ddo88@hotmail.com", l, "http://alabanza.iglesiapagiel.com/Lista/Index");
             return true;
         }
     }

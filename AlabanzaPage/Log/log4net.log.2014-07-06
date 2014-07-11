@@ -1,0 +1,14 @@
+2014-07-06 15:15:56,982 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-07-06 15:16:53,178 INFO AlabanzaPage.App_Start.Context - load context
+2014-07-06 15:17:26,263 INFO AlabanzaPage.MvcApplication - Inicio de aplicación
+2014-07-06 15:17:30,712 INFO AlabanzaPage.App_Start.Context - load context
+2014-07-06 15:21:21,329 ERROR AlabanzaPage.Controllers.CancionController - Save
+MongoDB.Driver.MongoDuplicateKeyException: WriteConcern detected an error ''. (Response was { "err" : "E11000 duplicate key error index: alabanza.canciones.$Nombre_1  dup key: { : \"Cantad a Jehova\" }", "code" : 11000, "n" : 0, "connectionId" : 883, "ok" : 1.0 }).
+   en MongoDB.Driver.Operations.WriteOpcodeOperationBase.ReadWriteConcernResult(MongoConnection connection, SendMessageWithWriteConcernResult sendMessageResult)
+   en MongoDB.Driver.Operations.InsertOpcodeOperation.Execute(MongoConnection connection)
+   en MongoDB.Driver.MongoCollection.InsertBatch(Type nominalType, IEnumerable documents, MongoInsertOptions options)
+   en MongoDB.Driver.MongoCollection.Insert(Type nominalType, Object document, MongoInsertOptions options)
+   en MongoDB.Driver.MongoCollection.Insert(Type nominalType, Object document)
+   en MongoDB.Driver.MongoCollection.Insert[TNominalType](TNominalType document)
+   en MongoDB.Driver.MongoCollection`1.Insert(TDefaultDocument document)
+   en AlabanzaPage.Controllers.CancionController.Save(String dataSave) en c:\Users\D\Documents\Visual Studio 2010\Projects\WebApplication1\AlabanzaPage\Controllers\CancionController.cs:línea 118
