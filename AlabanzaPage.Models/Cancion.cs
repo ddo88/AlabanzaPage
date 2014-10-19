@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,9 @@ namespace AlabanzaPage.Models
         public string Tipo          { get; set; }
         public string Letra         { get; set; }
         public string Observaciones { get; set; }
+        
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime UltimaVez   { get; set; }
     }   
 }

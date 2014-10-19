@@ -15,7 +15,7 @@
       <Value Profile="(Default)">usuarios</Value>
     </Setting>
     <Setting Name="Db" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">alabanza</Value>
+      <Value Profile="(Default)">pagiel</Value>
     </Setting>
     <Setting Name="Roles" Type="System.Collections.Specialized.StringCollection" Scope="Application">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -26,7 +26,7 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="ConnectionMongo" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">mongodb://pagiel:pagiel@kratos.zeitgeist.com.co:27017/alabanza</Value>
+      <Value Profile="(Default)">mongodb://pagiel:pagiel@23.253.98.86:27017/pagiel</Value>
     </Setting>
   </Settings>
 </SettingsFile>

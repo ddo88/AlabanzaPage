@@ -1,11 +1,12 @@
-﻿using AlabanzaPage.Properties;
+﻿using System.Runtime.CompilerServices;
+using AlabanzaPage.Properties;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
-
+[assembly: InternalsVisibleTo("AlabanzaPage.App_Start.Tests")]
 namespace AlabanzaPage.App_Start
 {
     public class Context
@@ -47,17 +48,14 @@ namespace AlabanzaPage.App_Start
 
         public MongoCollection<T> GetCollection<T>(string collection)
         {
-
             if (HttpRuntime.Cache[collection] == null)
             {
                 var a = Database.GetCollection<T>(collection);
                 insert(collection, a);
                 return a;
             }
-            else
-            {
-                return HttpRuntime.Cache[collection] as MongoCollection<T>;
-            }
+            
+            return HttpRuntime.Cache[collection] as MongoCollection<T>;
         }
 
         private void insert(string key,object obj)
